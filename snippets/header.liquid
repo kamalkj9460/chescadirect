@@ -1,0 +1,98 @@
+
+  <header class="site-header" role="banner">
+    <div class="container">
+      <div class="header-panel ">
+          <div class="row">
+          
+            <div class="menu-block visible-phone"><!-- start Navigation Mobile  -->
+                <div id="showLeftPush"></div>
+            </div><!-- end Navigation Mobile  --> 
+            {% comment %} 
+            <div class="col-xs-8"> 
+            <div class="col-xs-6 top-link">
+             	<div class="dropdown">
+                  <a data-toggle="dropdown" href="#"></a>
+                {% include 'linklists' %}
+                </div>
+            </div>
+            <div class="col-xs-6 top-currency">{% include 'new-currency-picker' %}</div>
+            </div>
+            {% endcomment %} 
+            
+            <div class="social col-xs-12">{% include 'social' %} 
+              <p><a href="/pages/contact-us" class="contactButtonStyle">Contact us online </a> or call us on <a href="tel:+4402076093434" class="contactButtonStyle">0207 609 3434</a></p>
+            </div>
+            <div class="col-xs-4 top-header ">
+              <div class="wrapper-top-cart">
+              <p class="top-cart">
+                <a href="javascript:void(0)" id="cartToggle"><span class="first">
+                  Cart</span> (<span id="cartCount">{{ cart.item_count }}</span>)                  
+                </a>                
+              </p>
+              <div id="dropdown-cart" style="display:none"> 
+                  <div class="no-items">
+                    <p>It appears that your cart is currently empty!</p>
+                    <p class="text-continue"><a href="javascript:void(0)">Continue Shopping</a></p>
+                  </div>
+                  <div class="has-items">
+                    <ol class="mini-products-list">  
+                       {% for item in cart.items %}
+                         <li class="item" id="cart-item-{{item.id}}">
+                            <a href="{{item.url}}" title="{{item.title}}" class="product-image"><img src="{{ item.image | product_img_url: 'small' }}" alt="{{item.title}}"></a>
+                            <div class="product-details">
+                                <a href="javascript:void(0)" title="Remove This Item" class="btn-remove">X</a>
+                                <p class="product-name"><a href="{{item.url}}">{{item.title}}</a></p> 
+                                <div class="cart-collateral">{{item.quantity}} x <span class="price">{{item.price | money}}</span></div>
+                            </div>
+                          </li>
+                       {% endfor %}                     
+                    </ol>                    
+                    <div class="summary">                
+                        <p class="total">
+                          <span class="label" style="color:#000">Total</span>
+                          <span class="price">{{cart.total_price | money}}</span> 
+                        </p>
+                    </div>
+                    <div class="actions">
+                        <button class="btn" onclick="window.location='/checkout'">Checkout</button>
+                    </div>
+                    <p class="text-cart"><a href="/cart">Or View Cart</a></p>
+                  </div>
+              </div>
+                 </div>
+      
+              {% comment %}
+                If customer accounts are enabled, provide login and create account links
+              {% endcomment %} 
+              
+              </div> <!-- End Top Header --> 
+       
+          </div>
+      </div>
+          <div class="header">
+              <div class="row">           
+      
+            {% comment %}
+              Use the uploaded logo from theme settings if enabled
+            {% endcomment %}
+            <div class="nav-search col-xs-3">
+              {% include 'search-bar' %}
+            </div> 
+            <div class="header-logo col-xs-7">
+              {% if settings.brand_type == 'image' %}
+                  <a href="/">
+                    {{ 'logo.png' | asset_url | img_tag: shop.name }}
+                  </a>
+              {% elsif settings.brand_text != "" %}
+                  <a class="logo-title" href="/">{{ settings.brand_text }}</a>
+              {% else %}
+                  <a class="logo-title" href="/">{{shop.name}}</a>
+              {% endif %}
+              
+            </div>
+            
+                       
+          </div>
+        </div>
+    </div>
+  </header>

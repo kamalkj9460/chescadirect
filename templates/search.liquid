@@ -1,0 +1,173 @@
+
+{% comment %}
+
+  The {{ content_for_header }} in theme.liquid will output the following stylesheet just for this page:
+    - <link rel="stylesheet" href="/global/search.css" type="text/css">
+
+  It has a few helpers in there, but this theme writes its own styles so there
+  are no dependencies or conflicts. You can ignore that file.
+
+  Return only products or pages in results:
+    - http://docs.shopify.com/manual/configuration/store-customization/return-only-product-in-storefront-search-results
+    - Or manually add type=product or type=page to the search URL as a parameter
+
+{% endcomment %}
+
+
+{% comment %}
+  If you're only showing products with the method above, why not show them off in a grid instead?
+  Set grid_results to true and see your updated results page for the new layout.
+{% endcomment %}
+
+{% comment %}
+{%  if search.terms contains 'vendor:franchesca' %}
+ 
+	{% layout 'theme-franchesca' %}
+    {% assign filteredsearchterms = search.terms | remove: " AND vendor:franchesca" %}
+
+ {% else %}
+	{% assign filteredsearchterms = search.terms | remove: " AND vendor:chesca" %}	
+
+{% endif %}
+{% endcomment %}
+
+{% assign grid_results = false %}
+
+  <div class="search-page">
+
+    {% if search.performed %}
+
+      {% comment %}
+        Avoid accessing search.results before the opening paginate tag.
+        If you do, the pagination of results will be broken.
+      {% endcomment %}
+      {% paginate search.results by 10 %}
+
+        {% comment %}
+          We don't have any results to show. Feel free to show off featured products
+          or suggested searches here.
+        {% endcomment %}
+        {% if search.results_count == 0 %}
+
+          <header class="page-header">
+            <h2>Your search for "{{ search.terms }}" did not yield any results.</h2>
+            <div class="wrapper-search-bar">{% include 'search-bar' %}</div>
+          </header>
+
+        {% else %}
+
+          <header class="page-header">
+            <h2>Your search for "{{ search.terms }}" revealed the following:</h2>
+            <div class="wrapper-search-bar">{% include 'search-bar' %}</div>
+          </header>
+    
+          <div class="toolbar">
+            <div class="collection-filter-panel" style="">  
+              <div class="boost-pfs-filter-top-sorting" style="position: relative; display: inline-block; vertical-align: middle;">
+                <label for="sort-by_new" style="margin-left: 20px;">Sort by</label>
+                <select id="sort-by_new">
+                  <option value="manual">Featured</option>
+                  <option value="price-ascending">Price: Low to High</option>
+                  <option value="price-descending">Price: High to Low</option>
+                  <option value="title-ascending">A-Z</option>
+                  <option value="title-descending">Z-A</option>
+                  <option value="created-ascending">Oldest to Newest</option>
+                  <option value="created-descending">Newest to Oldest</option>
+                  <option value="best-selling">Best Selling</option>
+                </select>
+              </div>
+
+              <div class="boost-pfs-filter-tree boost-pfs-filter-tree-h" data-is-desktop id="boost-pfs-filter-tree3">
+                {%- unless enable_filter_tree_button_desktop -%}
+                {% render 'boost-pfs-filter-skeleton', type: 'filter-tree-h' %}
+                {%- endunless -%}
+              </div>
+            </div>
+          </div>
+
+          <div class="boost-pfs-filter-tree-mobile-button">{%- render 'boost-pfs-filter-skeleton', type: 'button' -%}</div>
+          <div class="boost-pfs-filter-tree boost-pfs-filter-tree-v" data-is-mobile id="boost-pfs-filter-tree"></div>
+
+          {% comment %}
+            Each result template, based on the grid_layout variable above
+          {% endcomment %}
+    	<div class="boost-pfs-filter-products products-grid">
+          
+    	</div>
+
+        <div class="boost-pfs-filter-bottom-pagination padding">
+          {%- if paginate.pages > 1 -%}
+          {% include 'pagination-page' %}
+          {%- endif -%}
+        </div>
+        <div class="boost-pfs-filter-load-more"></div>
+    	{%- endif -%}
+
+      {% endpaginate %}
+
+
+    {% else %}
+
+      {% comment %}
+        If search.performed is false, someone either accessed the page without
+        the q parameter, or it was blank.
+        Be sure to show a search form here, along with anything else you want to showcase.
+      {% endcomment %}
+
+      <header class="page-header">
+        <h2>Search for products on our site</h2>
+        {% include 'search-bar' %}
+      </header>
+    {% endif %}
+  </div>
+
+{%- render 'boost-pfs-theme-config',
+	layout_type: layout_type,
+	enable_filter_sticky_d: enable_filter_sticky_d,
+	view_as_type: view_as_type,
+	products_per_page: products_per_page,
+	products_per_row: products_per_row,
+	products_per_row_m: products_per_row_m,
+	show_detail_when_hover: show_detail_when_hover,
+	show_vendor: show_vendor,
+	show_price: show_price,
+	active_image_swap: active_image_swap,
+	show_product_review: show_product_review,
+  
+	swatch_enable: swatch_enable,
+    show_swatch_tooltip: show_swatch_tooltip,
+    swatch_change_img: swatch_change_img,
+    swatch_by_color_apply: swatch_by_color_apply,
+    swatch_by_color_shape: swatch_by_color_shape,
+    swatch_by_img_apply: swatch_by_img_apply,
+    swatch_by_img_shape: swatch_by_img_shape,
+    swatch_by_pro_img_apply: swatch_by_pro_img_apply,
+    swatch_by_pro_img_shape: swatch_by_pro_img_shape,
+    swatch_by_text_apply: swatch_by_text_apply,
+    swatch_by_text_shape: swatch_by_text_shape,
+
+    aspect_ratio: aspect_ratio,
+    aspect_ratio_other: aspect_ratio_other,
+    product_img_crop: product_img_crop,
+    tag_label_enable: tag_label_enable,
+
+    label_type: label_type,
+    sale_label_enable: sale_label_enable,
+    sale_label_display: sale_label_display,
+    sale_label_img: sale_label_img,
+
+    sold_out_enable: sold_out_enable,
+    sold_out_display: sold_out_display,
+    sold_out_img: sold_out_img,
+
+    product_item_type: product_item_type,
+
+    label_soldout: label_soldout,
+    label_sale: label_sale,
+    label_from: label_from,
+    label_toolbar_viewas: label_toolbar_viewas,
+    label_items_with_count_one: label_items_with_count_one,
+    label_items_with_count_other: label_items_with_count_other,
+    label_sale_percent: label_sale_percent,
+    filter_tree_horizontal_style: filter_tree_horizontal_style
+-%}

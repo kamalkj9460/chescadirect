@@ -1,0 +1,127 @@
+<div class="toolbar">
+  <div class="left">
+    <button class="collection-filter-btn">Filter <span class="icon-drop"></span></button>     
+    <a class="grid" href="?view=grid" title="Grid view">Grid</a>
+    <span class="list" title="List view">List</span>
+  </div>
+
+  {% if settings.addthis_code %}
+  <div class="right">
+    <button class="collection-sharing-btn">Share<span class="icon-drop"></span></button>    
+  </div>
+  {% endif %}
+  
+  <div class="collection-sharing-panel" style="display:none">
+    {{ settings.addthis_code }}
+  </div>
+  
+  <div class="collection-filter-panel" style="display:none">        
+     <div class="filter-category btn-group">
+       <button class="btn btn-2 dropdown-toggle" data-toggle="dropdown">
+          <i class="icon-exchange"></i>Categories
+          <i class="icon-chevron-down"></i>
+       </button>
+
+       <ul class="dropdown-menu" role="menu">
+         {% for collection in collections %}
+        <li>
+          <a href="{{ collection.url }}">{{ collection.title }}</a>
+        </li>     
+      {% endfor %}
+       </ul>
+     </div>
+        
+     {% assign colItems = collection.all_vendors | size %}
+     {% if colItems > 0 %}
+     <div class="filter-vendor btn-group">
+       <button class="btn btn-2 dropdown-toggle" data-toggle="dropdown">
+          <i class="icon-exchange"></i>Vendors
+          <i class="icon-chevron-down"></i>
+       </button>
+
+       <ul class="dropdown-menu" role="menu">
+         {% if  collection.current_vendor == blank %}
+                <li class="active">
+          <a href="/collections/{{ collection.handle }}">all</a>
+                </li>
+          {% else %}
+        <li>
+          <a href="/collections/{{ collection.handle }}">all</a>
+                </li>
+          {% endif %}
+               {% for vendor in collection.all_vendors %}
+        {% if collection.current_vendor == vendor %}
+                <li class="active">{{ vendor | link_to_vendor }}</li>
+          {% else %}
+        <li>{{ vendor | link_to_vendor }}</li>
+        {% endif %}
+         {% endfor %}
+       </ul>
+     </div>
+    {% endif %}
+        
+    {% assign colItems = collection.all_types | size %}
+    {% if colItems > 0 %}
+    <div class="filter-type btn-group">
+       <button class="btn btn-2 dropdown-toggle" data-toggle="dropdown">
+          <i class="icon-exchange"></i>Types
+          <i class="icon-chevron-down"></i>
+       </button>
+
+       <ul class="dropdown-menu" role="menu">
+         {% if  collection.current_type == blank %}
+                <li class="active">
+          <a href="/collections/{{ collection.handle }}">all</a>
+                </li>
+          {% else %}
+        <li>
+          <a href="/collections/{{ collection.handle }}">all</a>
+                </li>
+          {% endif %}
+               {% for type in collection.all_types %}
+        {% if collection.current_type == type %}
+                <li class="active">{{ type | link_to_type }}</li>
+          {% else %}
+        <li>{{ type | link_to_type }}</li>
+        {% endif %}
+         {% endfor %}
+       </ul>
+     </div>
+    {% endif %}
+        
+    {% assign colItems = collection.all_tags | size %}
+    {% if colItems > 0 %}
+    <div class="filter-tag btn-group">
+       <button class="btn btn-2 dropdown-toggle" data-toggle="dropdown">
+          <i class="icon-exchange"></i>Tags
+          <i class="icon-chevron-down"></i>
+       </button>
+
+       <ul class="dropdown-menu" role="menu">
+         {% if  current_tags == blank %}
+            <li class="active">
+              <a href="/collections/{{ collection.handle }}">all</a>
+            </li>
+          {% else %}
+            <li>
+              <a href="/collections/{{ collection.handle }}">all</a>
+             </li>
+          {% endif %}
+          {% for tag in collection.all_tags %}
+            {% if current_tags contains tag %}
+              <li class="active">
+                <a href="/collections/{{ collection.handle }}/{{ tag | handleize }}" class="active">{{ tag | downcase }}</a>
+              </li>
+              {% else %}
+              <li>
+                <a href="/collections/{{ collection.handle }}/{{ tag | handleize }}">{{ tag | downcase  }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+       </ul>
+     </div>
+    {% endif %}
+    </div>
+  	
+</div>
+

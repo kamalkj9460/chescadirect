@@ -1,0 +1,81 @@
+{% comment %}
+
+  This page template is a requirement if you are submitting your theme to the Shopify Theme Store.
+  Be sure to select page.contact as the template from the admin page to have this template take effect.
+
+  For information on adding more fields, visit:
+    - http://docs.shopify.com/support/configuration/store-customization/adding-fields-to-the-liquid-contact-form
+
+{% endcomment %}
+
+<div class="contactus-page">
+
+    <header class="page-header">
+      <h1>{{ page.title }}</h1>
+    </header>
+
+    {% comment %}
+      Regular page content goes here.
+    {% endcomment %}
+    <div class="rte">
+      {{ page.content }}
+    </div>
+  
+   {% comment %}
+      Google Map
+    {% endcomment %}
+  {% if settings.display_google_map %}
+    <div class="map">
+      {% if settings.google_map_code != blank %}
+      {{ settings.google_map_code }}
+      {% endif %}
+	  </div>
+  
+  {% endif %}
+
+    {% comment %}
+      Contact form starts here
+    {% endcomment %}
+    <div>
+      {% form 'contact' %}
+
+        {% comment %}
+          Successful message
+        {% endcomment %}
+        {% if form.posted_successfully? %}
+          <p class="note form-success">
+            Thanks for contacting us! We'll get back to you as soon as possible.
+          </p>
+        {% endif %}
+
+        {% include 'form-errors-custom' %}
+      	
+      <div class="row">
+        
+        <div class="col-xs-6">
+          <div id="contactFormWrapper">
+            
+            {{ settings.contact_field_code }}
+           
+          </div>
+        </div>
+        {% if settings.display_location %}
+        
+        
+        <div class="col-xs-6">
+          	<div class="location">
+              {% if settings.location_code != blank %}
+              {{ settings.location_code }}
+          </div>
+        </div>
+        {% endif %}
+        {% endif %}
+      </div>
+        
+
+      {% endform %}
+
+  </div>
+
+</div>
+{% include 'breadcrumb' %}

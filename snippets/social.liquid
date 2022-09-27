@@ -1,0 +1,11 @@
+{% if settings.display_social %}
+  {% comment %}
+    Loop through the persistent theme settings and list out each social network link.
+  {% endcomment %}
+  <ul class="inline-list">
+    <li>{% if settings.facebook_link != blank %}<a href="{{ settings.facebook_link }}" title="{{ shop.name }} on Facebook">{{ 'i-facebook.png' | asset_url | img_tag }}</a>{% endif %}</li>
+    <li>{% if settings.twitter_link != blank %}<a href="{{ settings.twitter_link }}" title="{{ shop.name }} on Twitter">{{ 'i-twitter.png' | asset_url | img_tag }}</a>{% endif %}</li>
+    <li>{% if settings.google_link != blank %}<a href="{{ settings.google_link }}" title="{{ shop.name }} on Google +">{{ 'i-google.png' | asset_url | img_tag }}</a>{% endif %}</li>
+    <li>{% if settings.instagram_link != blank %}<a href="{{ settings.instagram_link }}" title="{{ shop.name }} on Instagram">{{ 'i-instagram.png' | asset_url | img_tag }}</a>{% endif %}</li>	  
+  </ul>
+{% endif %}

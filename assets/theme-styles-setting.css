@@ -1,0 +1,247 @@
+/*  General
+/*-------------------------- */
+html,
+body { font-size: 16px; color: #404e53; }
+a {color: #404e53;}
+.blog-detail .user-tags li  {color: #404e53;}
+
+.page-header h2, .page-header h1 { color:#404e53; text-align: center;}
+.page-header { border-bottom-style: solid;border-bottom-color: #dfe4e6;}
+
+.breadcrumb a, 
+.breadcrumb span {color:#66787f;  text-transform:uppercase;}
+.breadcrumb {border-top-style: solid; border-top-color: #dfe4e6;}
+/*  Background
+/*-------------------------- */
+
+body {
+  
+    background: #ffffff;
+  
+  
+  background-position: left top;
+  background-repeat: repeat;
+  background-attachment: scroll;
+}
+
+
+/*  Button
+/*-------------------------- */
+.btn {background: #090939; color: #ffffff; }
+.btn:hover {background: #f14d48; color: #ffffff;}
+
+.btn-secondary { border-color:#66787f; background-color: #ffffff; color: #66787f; }
+.btn-secondary:hover {border: 2px solid #66787f;  background: #66787f; color:#fff; border-color:#66787f; background-color: #66787f; color: #ffffff; }
+
+/*  Footer
+/*-------------------------- */
+
+.site-footer {
+   
+    background: #9d9ea1;
+  
+	
+	background-position: left top;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+}
+.footer-top,
+.footer-bottom,
+.footer-top .col-xs-3{border-color: #a6e1e1;}
+
+.footer-top h3 {color: #5d9494;}
+.site-footer a {color: #5d9494;}
+.footer-bottom address {color: #5d9494;}
+
+#accepted-text {color: ;}
+
+#customer-links a ,#customer-links{color: #66787f;}
+.header .top-cart a{color: #66787f;}
+
+/*  Navigation
+/*-------------------------- */
+
+.template-index .site-nav {border-bottom-style:solid; }
+.header { border-bottom-style: solid ; border-bottom-color:#d2d8db; }
+.site-nav > li > a {color: #404e53;}
+.site-nav > li:hover > a ,
+.site-nav > li:hover > a:hover {color: #66787f;}
+.site-nav li.dropdown .icon-dropdown {border-top-color: #7a8e95;}
+
+/* dropdown menu */
+
+.site-nav-dropdown {border-style: solid;border-color: #c5cacb; background: #ffffff; }
+.site-nav-dropdown  li  a {background: ; color: ;}
+.site-nav-dropdown li:hover 
+.site-nav-dropdown a:active {background: #f4f6f7; color: #66787f;}
+.site-nav-dropdown li:hover a:before {background:  #66787f; }
+
+/* Home Page ------------------------------------------------------------ */
+/* Three Banner Top */
+.banner-home-top h4 span {border-top-color: #ffffff;border-bottom-color: #ffffff; border-top-style:solid;border-bottom-style:solid; color: #ffffff; }
+
+/* Block About Us Home Page */
+.aboutus-home .inner {border-bottom-style:solid;border-bottom-color: #c4cdcd;}
+.aboutus-home h2 { color: #404e53;}
+.aboutus-home p { color: #404e53;}
+
+/* Border product item */
+.products-grid .grid-item-border .product-image,
+.grid-item-border.product-img-box .product-photo-container { border-color: #ff0000;}
+
+
+/* font-size */
+
+.footer-top h3,
+.breadcrumb,
+.spr-summary-actions a,
+.top-link .dropdown-menu a,
+table th,
+#customer-links{font-size:15px;}
+
+.site-nav > li > a,
+.cart-row label{font-size:16px;}
+
+.panel-title > a,
+.spr-form-label,
+.swatch label,
+.panel-body .spr-form-label,
+.top-cart a,
+.banner-home-top h4 span,
+.quickview-button a,
+.btn-secondary, 
+.infinite-scrolling a, 
+.text-continue a, 
+.infinite-scrolling-homepage a,
+.btn
+{font-size:16px;}
+
+.product-vendor,
+label[for="quantity"],
+.aboutus-home p,
+.product-title, 
+.product-name a, 
+.ajax-product-title,
+.old-price, 
+.old-price .money, 
+.compare-price .money,
+.slide-text,
+.slide-des .slide-button,
+.price-box,
+.cart-table h2.h4 a
+{font-size: 12px;}
+
+#tagline
+{font-size:21px;}
+
+.aboutus-home h2,
+.widget-featured-product .widget-title h2,
+.recently-viewed-products h2, .related-products h2
+{font-size:22px;}
+
+/*  Header
+/*-------------------------- */
+.top-cart a { color: #66787f; }
+.top-cart a:hover { color: #090939; }
+.top-cart a:hover span.first:before, 
+.top-cart a:focus span.first:before { border-bottom-color: #090939; }
+
+.site-nav { border-bottom-style: solid ; border-bottom-color:#d2d8db; }
+
+/*  Fonts
+/*-------------------------- */
+
+	body,
+	table  th, 
+	#email-modal .window-window .window-content .title,
+	#email-modal .window-window .window-content .message,
+	#mc_embed_signup input.input-group-field,
+    #mc-embedded-subscribe,
+    #mc_embed_signup button  span,
+    #mc_embed_signup .input-group-btn .btn,
+    .price-box, 
+    .old-price,
+    .old-price .money,
+    .compare-price .money,
+    .quick-view .product-shop .price,
+    .product-shop .money,
+    label[for="quantity"],
+    #faqs .panel-group .panel-body:before, 
+    #faqs .panel-title:before,
+    #faqs .panel-title > a:after,
+    .top-cart .block-content .item .product-name a { font-family: Roboto; }
+
+
+
+  .slide-des .slide-button,
+  .slide-heading,
+  .panel-title > a,
+  #faqs .panel-title > a,
+  table.wishlist-product thead th,
+  .template-customers-account .page-header h4,
+  .btn,
+  .btn-secondary,
+  .infinite-scrolling a,
+  .text-continue a,
+  .infinite-scrolling-homepage a,
+  #get-rates-submit,
+  .page-header h2,
+  .page-header h1,
+  .aboutus-home h2,
+  .banner-home-bottom .des h4,
+  .widget-title h3,
+  .header .top-cart a,
+  .free-shipping h3,
+  .banner-home-bottom .des a,
+  .newsletter .block-title,
+  #email-modal .window-window .window-content .title,
+  .widget-featured-product .widget-title h2,
+  .collection-title a,
+  .product-shop .product-description h4,
+  .cart-table a.remove,
+  .related-products h2,
+  #shipping-calculator h3,
+  #add-comment-title ,
+  .title-comment,
+  .recently-viewed-products h2,
+  .cart-title,
+  .cart-row label.total-price,
+  .top-cart a,
+  .banner-home-top h4 span { font-family: Montserrat; }
+
+
+
+  .content-blog .list-blog h3 a,
+  .list-blog li .blog_author,
+  .list-blog li .tags li a,
+  .blog-detail .page-header h1,
+  .blog-detail .user-tags li,
+  .comment-head,
+  .comment-content p,
+  #email-modal .window-window .window-content .title span,
+  .product-title,
+  .product-name a,
+  .ajax-product-title,
+  .special-price em,
+  .collection-title small,
+  .product-shop .product-title h2,
+  .product-shop .product-title a,
+  .product-shop .tags a,
+  .product-shop .tags span,
+  .product-vendor,
+  .cart-list h2.h4 a,
+  table.wishlist-product a.product-title,
+  .template-customers-account .grid .grid-item > h5,
+  .template-customers-addresses .grid .grid-item > h3,
+  .page-header .rte,
+  .widget-recent-articles .article a,
+  .widget-recent-articles .article em,
+  .widget-tags li a,
+  .widget-links .link-list li a,
+  .slide-text,
+  .aboutus-home p,
+  .banner-home-bottom .des p,
+  .newsletter > span { font-family: Georgia; }
+
+
+.newsletter .block-title legend { color: #404e53; }

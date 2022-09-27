@@ -1,0 +1,449 @@
+
+
+{% if product.vendor == "franchesca" %}
+{% layout 'theme-franchesca' %}
+{% endif %}
+<div itemscope itemtype="http://schema.org/Product" class="product">
+  <meta itemprop="name" content="{{ product.title }}">
+  <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+  <meta itemprop="image" content="https:{{ product.selected_or_first_available_variant.image.src | product_img_url: 'grande' }}" />
+  <meta itemprop="sku" content="{{ product.variants.first.sku }}"/>
+  <p class="meta vendor" itemprop="brand" content=”{{ product.vendor }}” itemscope itemtype="http://schema.org/Brand">
+  <meta itemprop="description" content="{{ product.description | strip_html | escape }}"/>
+
+
+    <!--<meta itemprop="shop-currency" content="{{ shop.currency }}">-->
+
+
+  <div class="row">
+    <div class="col-xs-5 product-img-box {% if settings.product_image_border%} grid-item-border {% endif %}">
+      {% if product.images.size == 0 %}
+        <div class="product-photo-container">
+        {%- for collection in product.collections -%}
+          
+        {%- if collection.title == "New arrivals" -%}
+        <img id="new-arrival-badge" style="display: none" src="https://cdn.shopify.com/s/files/1/0539/3612/8173/files/chescadirect_newarrival.png?v=1660528455">
+        {%- endif -%}
+        {%- endfor -%}
+          <img src="{{ '' | product_img_url: 'grande' }}" alt="">
+        </div>
+      {% else %}
+        <div class="product-photo-container">
+          {%- for collection in product.collections -%}
+          
+        {%- if collection.title == "New arrivals" -%}
+        <img id="new-arrival-badge" style="display: none" src="https://cdn.shopify.com/s/files/1/0539/3612/8173/files/chescadirect_newarrival.png?v=1660528455">
+        {%- endif -%}
+        {%- endfor -%}
+			{% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
+			<a href="{{ featured_image | img_url: 'original' }}" >
+			  <img id="product-featured-image" src="{{ featured_image | img_url: 'grande' }}" alt="{{ featured_image.alt | escape }}" data-zoom-image="{{ featured_image.src | img_url: 'original' }}"/>
+			</a>
+        </div>		
+        {% if product.images.size > 1  %}		
+          <div class="more-view-wrapper {% if settings.style_moreview == 'vertical' %} more-view-wrapper-jcarousel {% else %} more-view-wrapper-owlslider {% endif %}">
+            <ul id="more-view-carousel" class="product-photo-thumbs jcarousel-skin-tango">
+              {% for image in product.images %}
+                <li class="grid-item">
+                  <a href="javascript:void(0)" data-image="{{ image.src | product_img_url: 'grande' }}" data-zoom-image="{{ image.src | product_img_url: 'original' }}">
+                    <img src="{{ image.src | product_img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}		
+      {% endif %}
+    </div>
+    
+    <div class="col-xs-7 product-shop">
+      <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+        <div class="chesca-product-form">
+          <div class="chesca-top">
+        <header class="product-title">
+          <h1 itemprop="name">{{ product.title }}</h1>
+        </header>
+        <meta itemprop="url" content="{{ shop.url }}{{ product.selected_or_first_available_variant.url }}" />
+        <h2 class="product-vendor" style="font-size: 16px;">{% assign words = product.variants.first.sku | split: "." %} {{ words[0] }} </h2>
+        {% if product.available %}
+          <link itemprop="availability" href="http://schema.org/InStock">
+        {% else %}
+          <link itemprop="availability" href="http://schema.org/OutOfStock">
+        {% endif %}
+        
+		{% if settings.display_product_reviews %}       
+        <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+        {% endif %}
+        
+        <p class="short-description">{{ product.description }}</p>
+          </div>
+          <div class="chesca-mid">
+        <div class="prices">
+          {% if product.compare_at_price > product.price %}
+          <span class="compare-price">{{ product.compare_at_price_max | money }}</span>
+          <span class="price on-sale" itemprop="price">{{ product.price | money }}</span>
+          {% else %}
+          <span class="price" itemprop="price">{{ product.price | money_without_currency }}</span>
+          <span itemprop="priceCurrency" content="GBP" />
+          {% endif %}
+        </div> 
+      
+          {% form 'product', product, id: "add-to-cart-form" %}
+              
+            <div id="product-variants">
+                {% assign variantCount = product.variants | size %}
+                {% if product.available %} 
+                  {% if variantCount > 1 %}	
+					<select id="product-selectors" name="id" style="display:none">
+					  {% for variant in product.variants %}
+						<option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+					  {% endfor %}
+					</select>
+              		
+              		{% if settings.use_color_swatch %}
+                      {% for option in product.options %}
+                        {% include 'swatch' with option %}
+                      {% endfor %}
+                    {% endif %}
+              
+                  {% else %}
+              	    <input type="hidden" name="id" value="{{ product.variants[0].id }}" />
+                  {% endif %}
+                {% endif %}
+            </div>
+		  {% if product.available %} 
+          <label for="quantity">Quantity: </label>
+          <input min="1" type="number" id="quantity" name="quantity" value="1">
+			{{ form | payment_button }}
+          <input type="submit" name="add" class="btn" id="product-add-to-cart" value="Add to Cart">          
+          {% else %} 
+          	<input type="submit" name="add" class="btn" id="product-add-to-cart" disabled value="Unavailable">          
+          {% endif %}
+        {% endform %}
+        </div>
+        </div>
+        {% include 'wishlist-product' %}
+          
+        {% if settings.display_product_detail_tag %}         
+        <div class="tags">
+          <i class="icon-tags">Tags:</i> 
+			{% for tag in product.tags %}
+          	<span class="separator">/</span>
+			<a href="/collections/all/{{tag}}" rel="tag">{{ tag }}</a>
+			{% endfor %}
+        </div>
+		{% endif %}
+		
+		{% if settings.display_product_detail_share %} 
+			{% include 'share' with product %}
+		{% endif %}
+        
+        {% comment %}
+        Product Tabs: description, custom tab, size chart, product reviews 
+        {% endcomment %}
+        <div class="panel-group" id="accordion">
+		  {% if settings.display_product_detail_description %}
+          <div class="panel product-description rte wow fadeInUp" data-wow-delay="100ms">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse-tab1">
+                  Details
+                </a>
+              </h4>
+            </div>
+            <div id="collapse-tab1" class="panel-collapse collapse">
+              <div class="panel-body" itemprop="description">
+                {{ product.description }}
+              </div>
+            </div>
+          </div>
+          {% endif %}
+		  {% if settings.display_custom_tab %}
+          <div class="panel wow fadeInUp" data-wow-delay="200ms">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse-tab2">
+                  {{ settings.custom_tab_title}}
+                </a>
+              </h4>
+            </div>
+            <div id="collapse-tab2" class="panel-collapse collapse">
+              <div class="panel-body">
+                {{ settings.custom_tab_content}}
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          {% if settings.display_size_chart %}
+          <div class="panel wow fadeInUp" data-wow-delay="300ms">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse-tab3">
+                  {{ settings.custom_size_chart_title}}
+                </a>
+              </h4>
+            </div>
+            <div id="collapse-tab3" class="panel-collapse collapse">
+              <div class="panel-body">
+                
+                {% if product.vendor == "franchesca" %}
+               	 	<img src="https://cdn.shopify.com/s/files/1/0653/9731/files/Size_chart_all_in_one_up_to_date_3.2.16_V2.jpg?691452360734440200"> </img>
+                {% else %}
+                	{{ 'custom_size_chart_content.jpg' | asset_url | img_tag }}
+                {% endif %}
+                
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          {% if settings.display_product_reviews %}       
+          <div class="panel wow fadeInUp" data-wow-delay="400ms">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse-tab4">
+                  Reviews
+                </a>
+              </h4>
+            </div>
+            <div id="collapse-tab4" class="panel-collapse collapse">
+              <div class="panel-body">
+                {% comment %}
+                Add product review widget, must install Product Review App:
+                https://apps.shopify.com/product-reviews
+                {% endcomment %}
+                <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          <script>
+          jQuery('.panel-collapse').on('show.bs.collapse', function () {
+            jQuery('.panel-title').removeClass('active');
+            jQuery(this).parent().find('.panel-title').addClass('active');
+          });
+          jQuery('.panel-collapse').on('hide.bs.collapse', function () {
+            jQuery('.panel-title').removeClass('active');
+          });
+          </script>
+        </div>
+        
+      </div>
+
+    </div>
+  </div>
+
+</div>
+{% include 'cross-sell' %}
+
+{% if settings.display_related_products %} 
+	{% if settings.related_products_type == "tags" %}
+		{% include 'related-products-by-tags' %}
+	{% else %}
+		{% include 'linkcious' %}
+	{% endif %}
+{% endif %}
+
+{% if settings.display_recently_viewed_products %} 
+{% include 'recently-viewed-products' %}
+{% endif %}
+
+{{ 'option_selection.js' | shopify_asset_url | script_tag }}
+
+{% include 'breadcrumb' %}
+<script>
+  //Shopify.Image.preload({{ product.images | json }}, 'grande');
+
+  {% if product.available %} 
+  //update price when changing quantity
+  function updatePricing() {
+    var regex = /([0-9]+[.|,][0-9]+)/g;
+    var unitPriceText = jQuery('.product .price').text().match(regex)[0];
+    var unitPrice = unitPriceText.replace(/[.|,]/,'');
+    var quantity = parseInt(jQuery('#quantity').val());
+    var totalPrice = unitPrice * quantity;
+
+    var totalPriceText = Shopify.formatMoney(totalPrice, window.money_format);
+    totalPriceText = totalPriceText.match(regex)[0];
+
+    var totalPriceHtml = jQuery('.product .price').html().replace(unitPriceText, totalPriceText);
+    totalPriceHtml = totalPriceHtml.replace(unitPriceText, totalPriceText);
+
+    jQuery('.product .total-price span').html(totalPriceHtml);
+  }
+  jQuery('#quantity').on('change', updatePricing);
+  {% endif %}
+  
+var selectCallback = function(variant, selector) {
+
+  var addToCart = jQuery('#product-add-to-cart'),
+      productPrice = jQuery('.product .price'),
+      comparePrice = jQuery('.product .compare-price');  
+   
+  if (variant) {
+    if (variant.available) {
+      // We have a valid product variant, so enable the submit button
+      addToCart.removeClass('disabled').removeAttr('disabled').val('Add to Cart');
+
+    } else {
+      // Variant is sold out, disable the submit button
+      addToCart.val('Sold Out').addClass('disabled').attr('disabled', 'disabled');
+    }
+
+    // Regardless of stock, update the product price
+    productPrice.html(Shopify.formatMoney(variant.price, "{{ shop.money_format }}"));
+
+    // Also update and show the product's compare price if necessary
+    if ( variant.compare_at_price > variant.price ) {
+      productPrice.addClass("on-sale")
+      comparePrice
+        .html(Shopify.formatMoney(variant.compare_at_price, "{{ shop.money_format }}"))
+        .show();
+    } else {
+      comparePrice.hide();
+      productPrice.removeClass("on-sale");
+    }
+    {% if settings.use_color_swatch %}
+    // BEGIN SWATCHES
+      var form = jQuery('#' + selector.domIdPrefix).closest('form');
+      for (var i=0,length=variant.options.length; i<length; i++) {
+        var radioButton = form.find('.swatch[data-option-index="' + i + '"] :radio[value="' + variant.options[i] +'"]');
+        if (radioButton.size()) {
+          radioButton.get(0).checked = true;
+        }
+      }
+     // END SWATCHES
+     {% endif %}
+      
+     updatePricing();
+  
+    {% if settings.enable_multiple_currencies %}
+    Currency.convertAll('{{ shop.currency }}', jQuery('#currencies').val(), 'span.money', 'money_format');
+    {% endif %}
+          
+  } else {
+    // The variant doesn't exist. Just a safeguard for errors, but disable the submit button anyway
+    addToCart.val('Unavailable').addClass('disabled').attr('disabled', 'disabled');
+  }
+    /*begin variant image*/
+    if (variant && variant.featured_image) {
+        var originalImage = jQuery("#product-featured-image");
+        var newImage = variant.featured_image;
+        var element = originalImage[0];
+        Shopify.Image.switchImage(newImage, element, function (newImageSizedSrc, newImage, element) {
+          jQuery('#more-view-carousel img').each(function() {
+            var grandSize = jQuery(this).attr('src');
+            grandSize = grandSize.replace('compact','grande');
+            if (grandSize == newImageSizedSrc) {
+              jQuery(this).parent().trigger('click');              
+              return false;
+            }
+          });
+        });        
+    }
+    /*end of variant image*/
+};
+
+jQuery(function($) {
+  {% if product.available and product.variants.size > 1 %}
+    new Shopify.OptionSelectors('product-selectors', {
+      product: {{ product | json }},
+      onVariantSelected: selectCallback, 
+	  enableHistoryState: false
+    });   
+     
+     {% comment %}
+     Use color swatch and linked options (copyright by @carolineschnapp)
+     {% endcomment %}
+     {% if settings.use_color_swatch and product.available and product.options.size > 1 %}
+     Shopify.linkOptionSelectors({{ product | json }});
+     {% endif %} 
+     
+     {% if settings.use_color_swatch != true %}
+      jQuery('.single-option-selector').selectize();
+      jQuery('.selectize-input input').attr("disabled","disabled");
+     {% endif %}
+
+   {% endif %}
+  
+  // Add label if only one product option and it isn't 'Title'. Could be 'Size'.
+  {% if product.options.size == 1 and product.options.first != 'Title' %}
+    $('.selector-wrapper:eq(0)').prepend('<label>{{ product.options.first }}</label>');
+  {% endif %}
+
+  // Hide selectors if we only have 1 variant and its title contains 'Default'.
+  {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
+    $('.selector-wrapper').hide();
+  {% endif %}
+
+  // Auto-select first available variant on page load. Otherwise the product looks sold out.
+  {% assign found_one_in_stock = false %}
+  {% for variant in product.variants %}
+    {% if variant.available and found_one_in_stock == false %}
+      {% assign found_one_in_stock = true %}
+      {% for option in product.options %}
+      $('.single-option-selector:eq({{ forloop.index0 }})').val({{ variant.options[forloop.index0] | json }}).trigger('change');
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+  
+  {% if settings.display_product_reviews %}  
+    var reviewsTimeout = setInterval(function() {
+      if (jQuery(".spr-badge-caption").length>0) {
+		jQuery(".spr-badge-caption").on('click', function() {
+          jQuery('html,body').animate({
+            scrollTop: jQuery(".panel:last").offset().top},
+              '400');
+          jQuery("#collapse-tab4").collapse('show');
+        });
+        clearInterval(reviewsTimeout);
+      }
+    },1000);
+    
+  {% endif %}
+ 
+});
+</script>
+
+<script type="text/javascript">
+var price = jQuery('.prices').text().trim().split(' ')[0].replace(/[^0-9.]/g,'');
+var id = jQuery('#product-selectors').val();
+var google_tag_params = {
+ecomm_prodid: 'shopify_GB_{{ product.id }}_{{ product.variants.last.id }}',
+ecomm_pagetype: '{{ template }}',
+ecomm_totalvalue: {{ product.price_min | money_without_currency }},
+};
+</script>
+
+<!-- Targeting360 / Advertiser #56761 / Dynamic-Retargeting-Tag / Productfeed #21191 (Dummy) / View-Event / generated Mon, 07 Dec 2020 12:56:30 +0100 -->
+<script language="JavaScript" type="text/javascript">
+
+    /* ALL COMMENTS IN THIS JAVASCRIPT-TAG MAY BE REMOVED */
+
+    /* 0 if GDPR does not apply, 1 if GDPR applies */
+
+    var tp_rtrgt_gdpr = '0';
+
+    /* IAB TCF 2.0 consent string */
+
+    var tp_rtrgt_gdpr_consent = '';
+
+    /* Insert the viewed item or product of productfeed #21191 (Dummy) here. */
+
+    {% assign product_size = product.variants.last.sku.size | minus: 3 %}
+    var tp_rtrgt_items = '{{product.variants.last.sku | slice: 0, product_size   }}';
+    /*
+     * Optionally you can pass your predefined retargeting-segments to do
+     * both dynamic product-based and segmented retargeting.
+     */
+
+    var tp_rtrgt_segment = '';
+
+    /* DO NOT change the javascript below */
+    var tp_rtrgt_random = Math.random() * 10000000000000000;
+    var tp_rtrgt_url = 'http'+(('https:'==document.location.protocol)?'s':'')+'://ad.ad-srv.net/retarget?a=56761&version=1&event=view&cat=21191';
+    tp_rtrgt_url += '&gdpr=' + tp_rtrgt_gdpr;
+    tp_rtrgt_url += '&gdpr_consent=' + tp_rtrgt_gdpr_consent;
+    tp_rtrgt_url += '&segment=' + tp_rtrgt_segment;
+    tp_rtrgt_url += '&items=' + tp_rtrgt_items;
+    document.write('<div id="tp_rtrgt_div_' + tp_rtrgt_random + '" style="position:absolute; visibility:hidden; left:0px; top:0px; width:1px; height:1px; border:0"><iframe id="tp_rtrgt_iframe_' + tp_rtrgt_random + '" name="tp_rtrgt_iframe_' + tp_rtrgt_random + '" src="' + tp_rtrgt_url + '" scrolling="no" width="1" height="1"></iframe></div>');
+</script>

@@ -1,0 +1,13 @@
+ {% if settings.footer_display_newsletter %}
+      <section class="newsletter">
+        <fieldset class="block-title wow fadeIn" data-wow-delay="200ms">
+          {% if settings.footer_newsletter_title != blank %}
+          <legend align="center" data-wow-delay="100ms">{{ settings.footer_newsletter_title }}</legend>
+          {% endif %}
+        </fieldset>
+        <span data-wow-delay="200ms">Sign up for our Newsletter</span>
+        <div class="block-content wow fadeIn" data-wow-delay="400ms">
+        {% include 'newsletter-form' %}
+        </div>
+     </section>
+ {% endif %}

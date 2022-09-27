@@ -1,0 +1,67 @@
+{% comment %}
+
+  By using a variation of the 'view all' parameter technique, you can create
+  a custom layout for any template by adding ?view=xxxx
+
+  In this example, you can have a list view of your collection page by going to
+  /collections/all?view=list
+
+  For more information on collection tags:
+    - http://docs.shopify.com/themes/liquid-variables/collection
+
+  For more information on the ?view parameter:
+    - http://docs.shopify.com/support/configuration/store-customization/can-i-show-more-than-50-products-on-my-homepage-can-i-add-a-view-all-function-to-my-collection-pages#add-view-all
+
+{% endcomment %}
+
+{% paginate collection.products by 20 %}
+
+<header class="page-header">
+  <h1>{{ collection.title }}</h1>
+  {% if collection.description != ''  %}
+  <div class="rte">
+  	{{ collection.description }}
+  </div>
+  {% endif %}
+</header>
+
+{% comment %}
+  Use .grid--rev so that the collection tags appear below the products on mobile
+{% endcomment %}
+  <div class="block-row">
+
+    {% include 'toolbar-list' %}
+    
+    
+
+    {% comment %}
+      Use class grid-uniform to have evenly sized columns clear
+      each other properly at each breakpoint.
+    {% endcomment %}
+    <div class="product-list">
+
+      {% comment %}
+        Loop through our products in the current collection.
+        See the snippet 'product-grid-item' for the layout.
+      {% endcomment %}
+      {% for product in collection.products %}
+
+        {% include 'product-list-item' %}
+
+      {% else %}
+
+        <div class="grid-item">
+          <p>There are no products in this collection.</p>
+        </div>
+      {% endfor %}
+    </div>
+    {% if paginate.pages > 1 %}
+
+      <div class="padding">
+        {% include 'pagination-page' %}
+      </div>
+    {% endif %}
+  </div>
+
+{% endpaginate %}
+{% include 'breadcrumb' %}

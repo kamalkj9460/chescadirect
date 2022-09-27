@@ -1,0 +1,5 @@
+{% if settings.display_text_free_shipping %}
+	{% if settings.free_shipping_text != blank %}
+	<section class="free-shipping"><h3>{{ settings.free_shipping_text }}</h3></section>
+	{% endif %}
+{% endif %}

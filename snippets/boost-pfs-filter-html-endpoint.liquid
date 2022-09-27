@@ -1,0 +1,75 @@
+{%- comment -%} Please don’t update this content {%- endcomment -%}
+{%- comment -%} Load product html from ajax {%- endcomment -%}
+
+{%- if template == 'collection.boost-pfs-product-item' -%}
+{
+  "products":
+    [
+      {%- for tag in current_tags -%}
+        {
+          {%- assign product_handle = tag | handle -%}
+          {%- assign product = all_products[product_handle] -%}
+          {%- capture html -%}        
+			<div>{% include 'product-grid-item-category' %}</div>
+          {%- endcapture -%}
+        
+          "id":{{ product.id | json }},          
+          "html": 
+          {     
+            "theme_id": {{ theme.id | json }},
+            "value": {{ html | json }}
+          }
+        }
+        {%- unless forloop.last -%},{%- endunless -%}
+      {%- endfor -%}
+    ]
+}
+{%- comment -%} Sync product html to our server {%- endcomment -%}
+{%- elsif template == 'collection.html-endpoint' -%}
+  {%- if current_tags -%}
+    {%- comment -%} Quick sync (1 product) {%- endcomment -%}
+    {
+      "product":
+        {
+          {%- assign product_handle = current_tags[0] | handle -%}
+          {%- assign product = all_products[product_handle] -%}
+          {%- capture html -%}        
+			<div>{% include 'product-grid-item-category' %}</div>
+          {%- endcapture -%}
+                    
+          "id":{{ product.id | json }},
+          "html": 
+          {     
+            "theme_id": {{ theme.id | json }},
+            "value": {{ html | json }}
+          }
+        }
+    }
+  {%- else -%}
+    {%- comment -%} Full sync (all products) {%- endcomment -%}
+    {%- paginate collection.products by 50 -%}
+      {
+        "products":
+          [
+            {%- for product in collection.products -%}
+              {
+                {%- capture html -%}        
+                {% include 'product-grid-item-category' %}
+                {%- endcapture -%}
+                          
+                "id":{{ product.id | json }},
+                "html": 
+                {     
+                  "theme_id": {{ theme.id | json }},
+                  "value": {{ html | json }}
+                }
+              }
+              {%- unless forloop.last -%},{%- endunless -%}
+            {%- endfor -%}
+          ]
+      }
+    {%- endpaginate -%}
+  {%- endif -%}
+{%- else -%}
+  {{ boost_pfs_collection_template }}
+{%- endif -%}

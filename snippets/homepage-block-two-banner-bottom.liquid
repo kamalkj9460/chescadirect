@@ -1,0 +1,166 @@
+{% if settings.display_two_banner_bottom %}
+<section class="banner-home-bottom">
+  <ul class="row">
+    <li class="col-xs-6 wow fadeInUp" data-wow-delay="200ms">
+		<a href="{{ settings.two_banner_bottom_link_1 }}" title="">{{ 'banner-home-bottom-1.jpg' | asset_url | img_tag }}</a>
+		<div class="des">
+			{% if settings.display_banner_title_1  %}			
+			{% if settings.two_banner_bottom_title_1 != blank %}
+			<h4 style="
+                {% if settings.two_banner_bottom_title_color_1 != blank %} 
+                    color: {{ settings.two_banner_bottom_title_color_1 }};
+                {% elsif settings.two_banner_bottom_title_color != blank %}
+                    color: {{ settings.two_banner_bottom_title_color }};
+                {% endif %}
+                {% if settings.two_banner_bottom_title_size_1 != blank %}
+                    font-size: {{ settings.two_banner_bottom_title_size_1] }}px;
+                {% elsif settings.two_banner_bottom_title_size != blank %}
+                    font-size: {{ settings.two_banner_bottom_title_size] }}px;
+                {% endif %} "
+            >
+              <span>
+              {{ settings.two_banner_bottom_title_1 }}
+              </span>
+            </h4>				
+			{% endif %}
+			{% endif %}
+			{% if settings.display_banner_description_1 %}
+			{% if settings.two_banner_bottom_description_1 != blank %}
+			<p style="
+                {% if settings.two_banner_bottom_description_color_1 != blank %} 
+                    color: {{ settings.two_banner_bottom_description_color_1 }};
+                {% elsif settings.two_banner_bottom_description_color != blank %}
+                    color: {{ settings.two_banner_bottom_description_color }};
+                {% endif %}
+                {% if settings.two_banner_bottom_description_size_1 != blank %}
+                    font-size: {{ settings.two_banner_bottom_description_size_1] }}px;
+                {% elsif settings.two_banner_bottom_description_size != blank %}
+                    font-size: {{ settings.two_banner_bottom_description_size] }}px;
+                {% endif %} "
+            >
+              {{ settings.two_banner_bottom_description_1 }}
+            </p>		
+			{% endif %}
+			{% endif %}
+			{% if settings.display_banner_button_1 %}
+			{% if settings.two_banner_bottom_button_text_1 != blank %}
+			<a href="{{ settings.two_banner_bottom_link_1 }}" title="{{ settings.two_banner_bottom_button_text_1 }}">{{ settings.two_banner_bottom_button_text_1 }}</a>		
+			{% endif %}
+			{% endif %}
+		</div>
+	</li>
+    <li class="col-xs-6 wow fadeInUp" data-wow-delay="400ms">
+		<a href="{{ settings.two_banner_bottom_link_2 }}" title="">{{ 'banner-home-bottom-2.jpg' | asset_url | img_tag }}</a>
+		<div class="des">
+			{% if settings.display_banner_title_2 %}
+			{% if settings.two_banner_bottom_title_2 != blank %}
+			<h4 style="
+                {% if settings.two_banner_bottom_title_color_2 != blank %} 
+                    color: {{ settings.two_banner_bottom_title_color_2 }};
+                {% elsif settings.two_banner_bottom_title_color != blank %}
+                    color: {{ settings.two_banner_bottom_title_color }};
+                {% endif %}
+                {% if settings.two_banner_bottom_title_size_2 != blank %}
+                    font-size: {{ settings.two_banner_bottom_title_size_2] }}px;
+                {% elsif settings.two_banner_bottom_title_size != blank %}
+                    font-size: {{ settings.two_banner_bottom_title_size] }}px;
+                {% endif %} "
+            >
+              <span>
+                {{ settings.two_banner_bottom_title_2  }}
+              </span>
+          	</h4>
+			{% endif %}
+			{% endif %}
+			{% if settings.display_banner_description_2 %}
+			{% if settings.two_banner_bottom_description_2 != blank %}
+			<p style="
+                {% if settings.two_banner_bottom_description_color_2 != blank %} 
+                    color: {{ settings.two_banner_bottom_description_color_2 }};
+                {% elsif settings.two_banner_bottom_description_color != blank %}
+                    color: {{ settings.two_banner_bottom_description_color }};
+                {% endif %}
+                {% if settings.two_banner_bottom_description_size_2 != blank %}
+                    font-size: {{ settings.two_banner_bottom_description_size_2] }}px;
+                {% elsif settings.two_banner_bottom_description_size != blank %}
+                    font-size: {{ settings.two_banner_bottom_description_size] }}px;
+                {% endif %} "
+            >
+              {{ settings.two_banner_bottom_description_2 }}
+            </p>
+			{% endif %}
+			{% endif %}
+			{% if settings.display_banner_button_2 %}
+			{% if settings.two_banner_bottom_button_text_2 != blank %}
+			<a href="{{ settings.two_banner_bottom_link_2 }}" title="{{ settings.two_banner_bottom_button_text_2 }}">{{ settings.two_banner_bottom_button_text_2 }}</a>
+			{% endif %}
+			{% endif %}
+		</div>
+	</li>
+  </ul>
+   <div class="main_page_content">
+        
+<br />
+<p><span style="font-weight: 400;">At Chesca, we believe every woman deserves an amazing shopping experience. This is true if she’s just walked into the finest shop on Regent St., or visiting our website. To recreate a luxurious shopping trip, reminiscent of going to a fine department store, we invite you to browse our own departments. These include:</span></p>
+<br />
+<ul>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/luxury-designer-plus-size-womens-jackets-coats"><span style="font-weight: 400;">Jackets And Coats</span></a></li>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/luxury-designer-plus-size-womens-dresses"><span style="font-weight: 400;">Dresses</span></a></li>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/luxury-designer-plus-size-shrugs-cover-ups"><span style="font-weight: 400;">Shrugs And Cover Ups</span></a></li>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/luxury-designer-plus-size-womens-tops-blouses"><span style="font-weight: 400;">Tops And Blouses</span></a></li>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/luxury-designer-plus-size-trousers"><span style="font-weight: 400;">Trousers</span></a></li>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/luxury-designer-plus-size-skirts"><span style="font-weight: 400;">Skirts</span></a></li>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/luxury-designer-knitwear"><span style="font-weight: 400;">Knitwear</span></a></li>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/designer-womens-wraps-scarves"><span style="font-weight: 400;">Wraps And Scarves</span></a></li>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/hatinators-fascinators"><span style="font-weight: 400;">Hatinators And Fascinators</span></a></li>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/luxury-designer-wide-fit-shoes"><span style="font-weight: 400;">Shoes</span></a></li>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/luxury-designer-womens-bags"><span style="font-weight: 400;">Bags</span></a></li>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/luxury-designer-womens-jewellery"><span style="font-weight: 400;">Jewelry</span></a></li>
+</ul>
+<br />
+<p><span style="font-weight: 400;">We just know you’ll find something you love.</span></p>
+<br />
+<p><b>Collections</b></p>
+<br />
+<p><span style="font-weight: 400;">A new dress for a holiday gathering, a new years party ensemble, something breathtaking to wear on an upcoming cruise; life is full of occasions. Whatever you have planned, we would love to help you look and feel absolutely beautiful. Take a look at our collections. You’ll find stunning options for every event, and every woman.</span></p>
+<br />
+<ul>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/winter-warmers"><span style="font-weight: 400;">Winter Warmers</span></a></li>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/plus-size-coatigans"><span style="font-weight: 400;">Coat Department</span></a></li>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/curvy-chic-desk-dinner"><span style="font-weight: 400;">Desk to Dinner</span></a></li>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/plus-size-mother-of-the-bride-outfits"><span style="font-weight: 400;">Mother of The Bride</span></a></li>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/plus-size-occasion-wear"><span style="font-weight: 400;">Occasion Wear</span></a></li>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/stylish-escape"><span style="font-weight: 400;">Holiday Collection</span></a></li>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/plus-size-bridal-boutique-outfits"><span style="font-weight: 400;">Bridal Boutique</span></a></li>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/fuller-figured-wedding-accents"><span style="font-weight: 400;">Wedding Accents</span></a></li>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/fuller-figured-accessories"><span style="font-weight: 400;">Accessories</span></a></li>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/fur-essentials"><span style="font-weight: 400;">Fur Essentials</span></a></li>
+</ul>
+<br />
+<p><span style="font-weight: 400;">Let us help you look amazing at every event you attend.</span></p>
+<br />
+<p><b>Blog</b></p>
+<br />
+<p><span style="font-weight: 400;">We’ve got the scoop for you. </span><a href="https://chescadirect.co.uk/blogs/news"><span style="font-weight: 400;">Our blog</span></a><span style="font-weight: 400;">, written by fashion insiders, is full of great tips. You’ll find fashion advice, news on upcoming trends and sales, and so much more. We promise to keep this part of Chesca active, and full of new information. Check back soon!</span></p>
+<br />
+<p><b>Sale</b></p>
+<br />
+<p><span style="font-weight: 400;">If you’re a bargain shopper, we want you to feel right at home. In fact, we’ve created this section just for you. Browse our </span><a href="https://chescadirect.co.uk/collections/sale-collection"><span style="font-weight: 400;">current sale items</span></a><span style="font-weight: 400;">, and snap up the best fashion bargains online. You won’t find anything frumpy or outdated here. Instead, you’ll find amazing fashions from our best designers at prices you cannot resist. </span></p>
+<br />
+<p><b>Designers</b></p>
+<br />
+<p><span style="font-weight: 400;">Chesca is so fortunate to have developed amazing relationships with some of the world’s best women’s wear designers. Each brings amazing styles, quality fabrics, and their unique fashion sense. More importantly, every designer we feature has made a commitment to fit women of all sizes in clothing that is sexy, stunning, and stylish. Here are just a few of the designers that we feature:</span></p>
+<br />
+<ul>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/joseph-ribkoff"><span style="font-weight: 400;">Joseph Ribkoff</span></a></li>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/gerry-weber-collection"><span style="font-weight: 400;">Gerry Weber</span></a></li>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/chesca"><span style="font-weight: 400;">Chesca</span></a></li>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/frank-lyman"><span style="font-weight: 400;">Frank Lyman</span></a></li>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/eujen-klein"><span style="font-weight: 400;">Eugen Klein</span></a></li>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/bianca"><span style="font-weight: 400;">Bianca</span></a></li>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/cabotine"><span style="font-weight: 400;">Cabotine</span></a></li>
+<li style="font-weight: 400;"><a href="https://chescadirect.co.uk/collections/betty-barclay"><span style="font-weight: 400;">Betty Barclay</span></a></li>
+</ul>
+<br />
+<p><span style="font-weight: 400;">There are so many others. You may find an old favorite, or a new one.</span></p>
+{% endif %}

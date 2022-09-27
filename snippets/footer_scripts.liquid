@@ -1,0 +1,50 @@
+<!-- Footer scripts -->
+{{ 'new.js' | asset_url | script_tag }}  
+{%  include 'new-currency' %}
+
+<script>
+  var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+  	  showLeftPush = document.getElementById( 'showLeftPush' ),
+      body = document.body;
+
+  showLeftPush.onclick = function() {
+      classie.toggle( this, 'active' );
+      classie.toggle( body, 'cbp-spmenu-push-toright' );
+      classie.toggle( menuLeft, 'cbp-spmenu-open' );
+  };
+</script>
+
+
+{% if settings.enable_lazy_loading_pc or settings.enable_lazy_loading_mobile %}
+{{ 'wow.min.js' | asset_url | script_tag }}
+<script>
+function isMobileFunc() { 
+    var userAgent = navigator.userAgent.toLowerCase();   
+    var phone = (/iphone|android|ipod|blackberry|opera mini|opera mobi|skyfire|maemo|windows phone|palm|iemobile|symbian|symbianos|fennec/i.test(userAgent));
+    var tablet = (/ipad|sch-i800|playbook|tablet|kindle|gt-p1000|sgh-t849|shw-m180s|a510|a511|a100|dell streak|silk/i.test(userAgent));
+    return phone || tablet;
+}
+var enable_lazy_loading_pc = {{settings.enable_lazy_loading_pc}};
+var enable_lazy_loading_mobile = {{settings.enable_lazy_loading_mobile}};
+var isMobile = isMobileFunc();
+
+if ((enable_lazy_loading_pc && !isMobile) || (enable_lazy_loading_mobile && isMobile)) {
+	new WOW().init({offset:50});
+}
+  
+if (isMobile) {
+  var currentEl;
+  jQuery('.site-nav .dropdown > a').bind('click', function(event) {
+      if (currentEl != this) {
+          event.preventDefault();
+          currentEl = this;
+      }
+
+  });
+}
+</script>
+{% endif %}
+
+{% if settings.use_color_swatch %}
+{%  include 'swatch_scripts' %}
+{% endif %}

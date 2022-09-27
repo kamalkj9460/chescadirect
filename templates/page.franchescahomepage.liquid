@@ -1,0 +1,42 @@
+<style>
+ul {
+    
+    list-style: none !important;
+    
+}
+
+</style>
+{% layout 'theme-franchesca' %}
+{% include 'homepage-flexslider-franchesca' %}
+
+{% comment  %} Block Free Shipping Text {% endcomment %}
+{% include 'homepage-block-free-shipping-text' %}
+
+{% comment  %} Block Three Banner {% endcomment %}
+{% include 'homepage-block-three-banner-franchesca' %}
+
+{% comment %}
+  This is the homepage of your site.
+  More info on global variables (available on all templates):
+    - http://docs.shopify.com/themes/liquid-variables/global
+{% endcomment %}
+
+{% comment %} Block Feature Product {% endcomment %}
+{% include 'homepage-block-feature-product' %}
+
+
+{% comment %} Block Banner Bootom {% endcomment %}
+{% include 'homepage-block-two-banner-bottom-franchesca' %}
+
+{% comment %} Block Brands Slider {% endcomment %}
+{% if settings.display_brands_slider %}
+<section class="slider-brand-wrapper">{% include 'brands' %}</section>
+{% endif %}
+
+
+{% comment %} Block Footer Before {% endcomment %}
+{% include 'homepage-block-newsletter-franchesca' %}
+
+
+ 
+  

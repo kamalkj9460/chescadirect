@@ -1,0 +1,293 @@
+{% if template contains 'article' and blog.metafields.blogfeeder.use_canonical == 'yes' %}{% assign canonical_url = article.metafields.blogfeeder.canonical %}{% endif %}
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <!-- Start VWO Async SmartCode -->
+<script type='text/javascript'>
+window._vwo_code = window._vwo_code || (function(){
+var account_id=536592,
+settings_tolerance=2000,
+library_tolerance=2500,
+use_existing_jquery=false,
+is_spa=1,
+hide_element='body',
+
+/* DO NOT EDIT BELOW THIS LINE */
+f=false,d=document,code={use_existing_jquery:function(){return use_existing_jquery;},library_tolerance:function(){return library_tolerance;},finish:function(){if(!f){f=true;var a=d.getElementById('_vis_opt_path_hides');if(a)a.parentNode.removeChild(a);}},finished:function(){return f;},load:function(a){var b=d.createElement('script');b.src=a;b.type='text/javascript';b.innerText;b.onerror=function(){_vwo_code.finish();};d.getElementsByTagName('head')[0].appendChild(b);},init:function(){
+window.settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);var a=d.createElement('style'),b=hide_element?hide_element+'{opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;}':'',h=d.getElementsByTagName('head')[0];a.setAttribute('id','_vis_opt_path_hides');a.setAttribute('type','text/css');if(a.styleSheet)a.styleSheet.cssText=b;else a.appendChild(d.createTextNode(b));h.appendChild(a);this.load('https://dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(d.URL)+'&f='+(+is_spa)+'&r='+Math.random());return settings_timer; }};window._vwo_settings_timer = code.init(); return code; }());
+</script>
+<!-- End VWO Async SmartCode -->
+  
+  <meta name="google-site-verification" content="IE_Pw9NmcB--Pas6zcDnz9pzzMz2IinGlT58PBhz5Fc" />
+<meta name="google-site-verification" content="RplFNRkKO7ig2jIToRDkK729HcnGJdmd26LEqLSffDU" />
+  <meta name="google-site-verification" content="RplFNRkKO7ig2jIToRDkK729HcnGJdmd26LEqLSffDU" />
+  <!-- Basic page needs ================================================== -->
+  <meta charset="utf-8">
+	<!-- Global site tag (gtag.js) - DoubleClick -->
+      <script async
+      src="https://www.googletagmanager.com/gtag/js?id=DC-8708545"></script>
+      <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'DC-8708545');
+      </script>
+    <!-- End of global snippet: Please do not remove -->
+  	<script>
+      gtag('event', 'conversion', {
+      'allow_custom_scripts': true,
+        'u1': '{{canonical_url}}',
+      'u6': 'GBP',
+      'send_to': 'DC-8708545/counter/chesc0+standard'
+      });
+    </script> 
+  <!-- Title and description ================================================== -->
+  <title>
+  {{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>
+
+  {% if page_description %}
+  <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+
+    <meta name="robots" content="noindex,follow" />
+
+  
+  <!-- Product meta ================================================== -->
+  {% include 'fb-open-graph-tags' %}
+  {% include 'twitter-card' %}
+
+  <!-- Helpers ================================================== -->
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{{ 'favicon.ico' | asset_url }}" type="image/x-icon" />
+  
+   <!-- Styles -->
+    {% include 'head_styles' %}
+  
+   <!-- Scripts -->
+	{% include 'head_scripts' %}
+  
+   <!-- fonts -->
+	{% include 'head_fonts' %}
+  
+
+  <!-- Header hook for plugins ================================================== -->
+  {{ content_for_header }}
+
+  <!--[if lt IE 9]>
+  {{ '//html5shiv.googlecode.com/svn/trunk/html5.js' | script_tag }}
+  <![endif]-->
+
+  {% comment %}
+    If you store has customers disabled, you can remove the following JS file
+  {% endcomment %}
+  {% if template contains 'customers' %}
+    {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+    {{ 'customer_area.js'  | shopify_asset_url | script_tag }}
+  {% endif %}
+
+
+</head>
+
+{% comment %}
+  Add the page template as a class for easy page or template specific styling.
+{% endcomment %}
+<body id="{{ page_title | handle }}" class=" {% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
+ <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+    
+
+                <div class="gf-menu-device-wrapper">
+                	<div class="gf-menu-device-container"></div>
+                </div>
+
+
+             
+  </nav>
+  <div class="wrapper-container">
+	
+	
+  <header class="site-header" role="banner">
+    <div class="container">
+      <div class="header-panel ">
+          <div class="row">
+          
+            <div class="menu-block visible-phone"><!-- start Navigation Mobile  -->
+                <div id="showLeftPush"></div>
+            </div><!-- end Navigation Mobile  --> 
+            {% comment %} 
+            <div class="col-xs-8"> 
+            <div class="col-xs-6 top-link">
+             	<div class="dropdown">
+                  <a data-toggle="dropdown" href="#"></a>
+                {% include 'linklists' %}
+                </div>
+            </div>
+            <div class="col-xs-6 top-currency">{% include 'new-currency-picker' %}</div>
+            </div>
+            {% endcomment %} 
+            
+            <div class="social col-xs-12">{% include 'social' %} 
+              <p><a href="/contact-us">Contact us online </a> or call us on 0207 6093434</p>
+            </div>
+            <div class="col-xs-4 top-header ">
+              <div class="wrapper-top-cart">
+              <p class="top-cart">
+                <a href="javascript:void(0)" id="cartToggle"><span class="first">
+                  Cart</span> (<span id="cartCount">{{ cart.item_count }}</span>)                  
+                </a>                
+              </p>
+              <div id="dropdown-cart" style="display:none"> 
+                  <div class="no-items">
+                    <p>It appears that your cart is currently empty!</p>
+                    <p class="text-continue"><a href="javascript:void(0)">Continue Shopping</a></p>
+                  </div>
+                  <div class="has-items">
+                    <ol class="mini-products-list">  
+                       {% for item in cart.items %}
+                         <li class="item" id="cart-item-{{item.id}}">
+                            <a href="{{item.url}}" title="{{item.title}}" class="product-image"><img src="{{ item.image | product_img_url: 'small' }}" alt="{{item.title}}"></a>
+                            <div class="product-details">
+                                <a href="javascript:void(0)" title="Remove This Item" class="btn-remove">X</a>
+                                <p class="product-name"><a href="{{item.url}}">{{item.title}}</a></p> 
+                                <div class="cart-collateral">{{item.quantity}} x <span class="price">{{item.price | money}}</span></div>
+                            </div>
+                          </li>
+                       {% endfor %}                     
+                    </ol>                    
+                    <div class="summary">                
+                        <p class="total">
+                          <span class="label" style="color:#000">Total</span>
+                          <span class="price">{{cart.total_price | money}}</span> 
+                        </p>
+                    </div>
+                    <div class="actions">
+                        <button class="btn" onclick="window.location='/checkout'">Checkout</button>
+                    </div>
+                    <p class="text-cart"><a href="/cart">Or View Cart</a></p>
+                  </div>
+              </div>
+                 </div>
+      
+              {% comment %}
+                If customer accounts are enabled, provide login and create account links
+              {% endcomment %} 
+              
+              </div> <!-- End Top Header --> 
+       
+          </div>
+      </div>
+          <div class="header">
+              <div class="row">           
+      
+            {% comment %}
+              Use the uploaded logo from theme settings if enabled
+            {% endcomment %}
+            <div class="nav-search col-xs-6">
+               <a href="/">
+                    {{ 'continuelogo.jpg' | asset_url | img_tag: shop.name }}
+                  </a>
+            </div> 
+            <div class="header-logo col-xs-6">
+              {% if settings.brand_type == 'image' %}
+                  <a href="http://chescadirect.co.uk/pages/franchesca-homepage">
+                    {{ 'continuefranchescalogo.jpg' | asset_url | img_tag: shop.name }}
+                  </a>
+              {% elsif settings.brand_text != "" %}
+                  <a class="logo-title" href="/">{{ settings.brand_text }}</a>
+              {% else %}
+                  <a class="logo-title" href="/">{{shop.name}}</a>
+              {% endif %}
+              
+            </div>
+            
+                       
+          </div>
+        </div>
+    </div>
+  </header>
+
+  
+  <nav class="nav-bar" role="navigation">
+    <div class="container">
+      
+     
+    </div>
+  </nav>
+  <div class="quick-view"></div>
+
+  <main class="container main-content" role="main">
+    {{ content_for_layout }}
+
+  </main>
+
+  
+
+  {% if settings.enable_quick_view %}
+  	{% include 'quick-view-template' %}
+  {% endif %}
+
+  {% include 'footer_scripts' %}
+  {% include 'newsletter' %}
+  <div id="back-top" style="display: none;"><a class="nav_up" href="#top">Back to top</a></div>
+  </div>
+
+  {% if settings.display_recently_viewed_products %}
+  <!-- Begin Recently Viewed Products -->
+  {{ '//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js' | script_tag }}
+  {{ 'jquery.products.min.js' | asset_url | script_tag }}
+  {% if template contains 'product' %}
+  <script>
+  Shopify.Products.recordRecentlyViewed();
+  </script>
+  {% endif %}
+  <!-- End Recently Viewed Products -->
+  {% endif %}
+
+<input type="hidden" name="_pc_params" value="{{ shop.permanent_domain }}:{{ customer.id }}" />
+<script type="text/conversion">
+    if(typeof(google_tag_params)=='undefined')
+    {
+        var google_tag_params = {
+            ecomm_prodid: '',
+            ecomm_pagetype: 'other',
+            ecomm_totalvalue: ''
+        };
+    }
+</script>
+<!-- Google Code for Remarketing Tag -->
+<!--------------------------------------------------
+Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. See more information and instructions on how to setup the tag on: http://google.com/ads/remarketingsetup
+--------------------------------------------------->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1055895193;
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+  
+  $( document ).ready(function() {
+  $(".search-bar").on('submit', function() {
+  
+    var val = $(this).find('input[name="q"]').val();
+    $q = val + " AND vendor:franchesca";
+    $(this).find('input[name="q"]').val($q);
+  });
+})
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1055895193/?value=0&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+</body>
+</html>

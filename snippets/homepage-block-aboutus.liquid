@@ -1,0 +1,16 @@
+{% if settings.display_aboutus_home %}
+	<section class="aboutus-home wow fadeInUp" data-wow-delay="600ms">
+	  <div class="inner">
+		<h1>
+		{% if settings.aboutus_home_text_title != blank %}
+		{{ settings.aboutus_home_text_title }}		
+		{% endif %}
+		</h1>
+		<p>
+		{% if settings.aboutus_home_text_description != blank %}
+		{{ settings.aboutus_home_text_description }}
+		{% endif %}</p>
+       
+	  </div>
+	</section>
+{% endif %}

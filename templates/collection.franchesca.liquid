@@ -1,0 +1,64 @@
+{% layout 'theme-franchesca' %}
+{% comment %}
+  For more information on collection tags:
+    - http://docs.shopify.com/themes/liquid-variables/collection
+{% endcomment %}
+
+{% if settings.collection_results_per_page != blank %}
+  {% assign product_per_page = settings.collection_results_per_page %}
+{% else %}
+  {% assign product_per_page = 8 %}
+{% endif %}
+
+{% paginate collection.products by product_per_page %}
+  <header class="page-header">
+  <h1>{{ collection.title }}</h1>
+  
+
+{% comment %}
+  Use .grid--rev so that the collection tags appear below the products on mobile
+{% endcomment %}
+
+  <div class="block-row">
+   {% include 'toolbar-franchesca' %}  
+
+    {% comment %}
+      Use class grid-uniform to have evenly sized columns clear
+      each other properly at each breakpoint.
+    {% endcomment %}
+    
+    <div class="products-grid">
+      {% if collection.products.size > 0 %}      
+        {% paginate collection.products by product_per_page %}  
+        {% for product in collection.products %}
+          {% include 'product-grid-item-category' %}
+        {% endfor %}
+        {% endpaginate %}
+      {% else %}
+          <p>There are no products in this collection.</p>
+  	  {% endif %}    
+    </div>
+
+    {% if paginate.pages > 1 %}
+      <div class="padding">
+        {% include 'pagination-page' %}
+      </div>
+    {% endif %}
+
+  </div>
+{% endpaginate %}
+
+{% include 'breadcrumb' %}
+{% if collection.description != ''  %}
+    <div class="rte">
+    {{ collection.description }}
+    </div>
+  {% endif %}
+</header> 
+<script type="text/javascript">
+var google_tag_params = {
+ecomm_prodid: '',
+ecomm_pagetype: 'category',
+ecomm_totalvalue: ''
+};
+</script>

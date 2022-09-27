@@ -1,0 +1,24 @@
+{% if shop.customer_accounts_enabled %}
+  {% if customer  %}
+    <li id="customer-links">
+    {% if settings.enable_wishlist %}
+      <a href="/pages/wish-list" title="Wishlist">Wishlist</a>
+      <span class="or">/</span>
+    {% endif %}
+      {{ 'Logout' | customer_logout_link }}
+      <span class="or">/</span>
+      <a href="/account">Your Account</a></li>
+  {% else %}
+    <li id="customer-links">
+    {% if settings.enable_wishlist %}
+      <a href="/pages/wish-list" title="Wishlist">Wishlist</a>
+      <span class="or">/</span>
+    {% endif %}
+      {{ 'Login' | customer_login_link }}
+      {% if shop.customer_accounts_optional %}
+      <span class="or">/</span>
+      {{ 'Sign Up' | customer_register_link }}
+      {% endif %}
+    </li>
+  {% endif %}
+{% endif %}

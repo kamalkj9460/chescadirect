@@ -1,0 +1,160 @@
+{% comment %}
+  For more information on collection tags:
+    - http://docs.shopify.com/themes/liquid-variables/collection
+{% endcomment %}
+
+{% if settings.collection_results_per_page != blank %}
+  {% assign product_per_page = settings.collection_results_per_page %}
+{% else %}
+  {% assign product_per_page = 8 %}
+{% endif %}
+
+{% paginate collection.products by product_per_page %}
+  <header class="page-header">
+  <h1>{{ collection.title }}</h1>
+  
+
+{% comment %}
+  Use .grid--rev so that the collection tags appear below the products on mobile
+{% endcomment %}
+
+    <div class="block-row">
+      <div class="toolbar">
+        <div class="collection-filter-panel" style="">  
+          <div class="boost-pfs-filter-top-sorting" style="position: relative; display: inline-block; vertical-align: middle;">
+            <label for="sort-by_new" style="margin-left: 20px;">Sort by</label>
+            <select id="sort-by_new">
+              <option value="manual">Featured</option>
+              <option value="price-ascending">Price: Low to High</option>
+              <option value="price-descending">Price: High to Low</option>
+              <option value="title-ascending">A-Z</option>
+              <option value="title-descending">Z-A</option>
+              <option value="created-ascending">Oldest to Newest</option>
+              <option value="created-descending">Newest to Oldest</option>
+              <option value="best-selling">Best Selling</option>
+            </select>
+          </div>
+          
+          <div class="boost-pfs-filter-tree boost-pfs-filter-tree-h" data-is-desktop id="boost-pfs-filter-tree3">
+            {%- unless enable_filter_tree_button_desktop -%}
+              {% render 'boost-pfs-filter-skeleton', type: 'filter-tree-h' %}
+            {%- endunless -%}
+          </div>
+        </div>
+      </div>
+      
+      <div class="boost-pfs-filter-tree-mobile-button">{%- render 'boost-pfs-filter-skeleton', type: 'button' -%}</div>
+      <div class="boost-pfs-filter-tree boost-pfs-filter-tree-v" data-is-mobile id="boost-pfs-filter-tree"></div>
+
+    {% comment %}
+      Use class grid-uniform to have evenly sized columns clear
+      each other properly at each breakpoint.
+    {% endcomment %}
+    
+    <div class="boost-pfs-filter-products products-grid">
+      {% for product in collection.products %}
+      {% include 'product-grid-item-category' %}
+      {% endfor %}    
+    </div>
+    
+    <div class="boost-pfs-filter-bottom-pagination padding">
+      {%- if paginate.pages > 1 -%}
+      {% include 'pagination-page' %}
+      {%- endif -%}
+    </div>
+    <div class="boost-pfs-filter-load-more"></div>
+
+  </div>
+{% endpaginate %}
+
+
+{% if collection.description != ''  %}
+    <div class="rta">
+    {{ collection.description }}
+    </div>
+  {% endif %}
+</header> 
+<script type="text/javascript">
+var google_tag_params = {
+ecomm_prodid: '',
+ecomm_pagetype: 'category',
+ecomm_totalvalue: ''
+};
+</script>
+
+<!-- Targeting360 / Advertiser #56761 / Segmented-Retargeting-Tag / generated Mon, 07 Dec 2020 12:56:30 +0100 -->
+<script language="JavaScript" type="text/javascript">
+
+    /* ALL COMMENTS IN THIS JAVASCRIPT-TAG MAY BE REMOVED */
+
+    /* 0 if GDPR does not apply, 1 if GDPR applies */
+
+    var tp_rtrgt_gdpr = '0';
+
+    /* IAB TCF 2.0 consent string */
+
+    var tp_rtrgt_gdpr_consent = '';
+
+    /* Insert the predefined retargeting-segments here. */
+
+    var tp_rtrgt_segment = '{{ collection.title }}';
+
+    /* DO NOT change the javascript below */
+    var tp_rtrgt_random = Math.random() * 10000000000000000;
+    var tp_rtrgt_url = 'http'+(('https:'==document.location.protocol)?'s':'')+'://ad.ad-srv.net/retarget?a=56761&version=1';
+    tp_rtrgt_url += '&gdpr=' + tp_rtrgt_gdpr;
+    tp_rtrgt_url += '&gdpr_consent=' + tp_rtrgt_gdpr_consent;
+    tp_rtrgt_url += '&segment=' + tp_rtrgt_segment;
+    document.write('<div id="tp_rtrgt_div_' + tp_rtrgt_random + '" style="position:absolute; visibility:hidden; left:0px; top:0px; width:1px; height:1px; border:0"><iframe id="tp_rtrgt_iframe_' + tp_rtrgt_random + '" name="tp_rtrgt_iframe_' + tp_rtrgt_random + '" src="' + tp_rtrgt_url + '" scrolling="no" width="1" height="1"></iframe></div>');
+</script>
+
+{%- render 'boost-pfs-theme-config',
+	layout_type: layout_type,
+	enable_filter_sticky_d: enable_filter_sticky_d,
+	view_as_type: view_as_type,
+	products_per_page: products_per_page,
+	products_per_row: products_per_row,
+	products_per_row_m: products_per_row_m,
+	show_detail_when_hover: show_detail_when_hover,
+	show_vendor: show_vendor,
+	show_price: show_price,
+	active_image_swap: active_image_swap,
+	show_product_review: show_product_review,
+  
+	swatch_enable: swatch_enable,
+    show_swatch_tooltip: show_swatch_tooltip,
+    swatch_change_img: swatch_change_img,
+    swatch_by_color_apply: swatch_by_color_apply,
+    swatch_by_color_shape: swatch_by_color_shape,
+    swatch_by_img_apply: swatch_by_img_apply,
+    swatch_by_img_shape: swatch_by_img_shape,
+    swatch_by_pro_img_apply: swatch_by_pro_img_apply,
+    swatch_by_pro_img_shape: swatch_by_pro_img_shape,
+    swatch_by_text_apply: swatch_by_text_apply,
+    swatch_by_text_shape: swatch_by_text_shape,
+
+    aspect_ratio: aspect_ratio,
+    aspect_ratio_other: aspect_ratio_other,
+    product_img_crop: product_img_crop,
+    tag_label_enable: tag_label_enable,
+
+    label_type: label_type,
+    sale_label_enable: sale_label_enable,
+    sale_label_display: sale_label_display,
+    sale_label_img: sale_label_img,
+
+    sold_out_enable: sold_out_enable,
+    sold_out_display: sold_out_display,
+    sold_out_img: sold_out_img,
+
+    product_item_type: product_item_type,
+
+    label_soldout: label_soldout,
+    label_sale: label_sale,
+    label_from: label_from,
+    label_toolbar_viewas: label_toolbar_viewas,
+    label_items_with_count_one: label_items_with_count_one,
+    label_items_with_count_other: label_items_with_count_other,
+    label_sale_percent: label_sale_percent,
+    filter_tree_horizontal_style: filter_tree_horizontal_style
+-%}
