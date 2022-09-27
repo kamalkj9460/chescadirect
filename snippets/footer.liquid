@@ -3,7 +3,7 @@
       	<div class="footer-top"> 
 			<div class="row">
               <div class="col-1 col-xs-3 wow fadeInUp">
-                <a href="{{ settings.instagram_link_footer }}" title="Instagram" target="_blank">{{ 'instagram.png' | asset_url | img_tag }}</a>
+                <a href="{{ settings.instagram_link_footer }}" title="Instagram" target="_blank">{{ 'instagram.png' | asset_url | img_tag | replace: " src=", " class='lazy2' data-src=" }}</a>
               </div>
               <div class="col-2 col-xs-3 wow fadeInUp" data-wow-delay="200ms">
                   <h3>{{ settings.footer_column_1_title }}</h3>

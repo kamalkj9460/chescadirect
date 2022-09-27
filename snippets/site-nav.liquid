@@ -12,7 +12,7 @@
   {% for link in linklists.main-menu.links %}
     {% if linklists[link.handle] != empty %}
     <li class="dropdown {% if settings.display_megamenu and items_list contains link.title %} mega-menu {% endif %}">
-      <a href="{{ link.url }}" class="{% if link.active %} current{% endif %}"><span>{{ link.title }}</span>{% if settings.show_dropdown_arrow %} <span class="icon-dropdown"></span>{% endif %} </a> 	
+      <a href="#{% comment %}{{ link.url }}{% endcomment %}" class="{% if link.active %} current{% endif %}"><span>{{ link.title }}</span>{% if settings.show_dropdown_arrow %} <span class="icon-dropdown"></span>{% endif %} </a> 	
     
       {% comment %}
       Check if menu item is Mega menu
@@ -27,7 +27,7 @@
           {% for childlink in linklists[link.handle].links %}
             {% if linklists[childlink.handle] != empty %}
               <li class="dropdown">
-                <a href="{{ childlink.url }}" class="{% if childlink.active %} current{% endif %}"><span>{{ childlink.title }}</span>{% if settings.show_dropdown_arrow %} <span class="icon-dropdown"></span>{% endif %} </a>
+                <a href="#{% comment %}{{ childlink.url }}{% endcomment %}" class="{% if childlink.active %} current{% endif %}"><span>{{ childlink.title }}</span>{% if settings.show_dropdown_arrow %} <span class="icon-dropdown"></span>{% endif %} </a>
                 <ul class="site-nav-dropdown">
                   
                   {% for childlink2 in linklists.[childlink.handle].links %}

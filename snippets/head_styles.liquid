@@ -1,1 +1,5 @@
-{{ 'mini.css' | asset_url | stylesheet_tag }}
+{% if template contains 'cart' or template contains 'checkout' %}
+	<link rel="stylesheet" href="{{ 'mini.css' | asset_url }}">
+{% else %}
+    <link rel="stylesheet" data-href="{{ 'mini.css' | asset_url }}">
+{% endif %}

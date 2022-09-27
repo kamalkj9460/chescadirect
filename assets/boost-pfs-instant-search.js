@@ -7,7 +7,7 @@ var boostPFSInstantSearchConfig = {
 	}
 };
 
-(function() {
+setTimeout(function() {
 	BoostPFS.inject(this);
 
 	// Customize style of Suggestion box
@@ -63,4 +63,4 @@ var boostPFSInstantSearchConfig = {
     }, 500);
   });
 
-})();
+});

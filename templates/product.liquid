@@ -233,6 +233,16 @@
   </div>
 
 </div>
+
+<!-- TrustBox script -->
+<script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+<!-- End TrustBox script -->
+
+<!-- TrustBox widget - Grid -->
+<div style="display:none;" class="trustpilot-widget vwo" data-locale="en-US" data-template-id="539adbd6dec7e10e686debee" data-businessunit-id="4da9b65500006400050f8df4" data-style-height="500px" data-style-width="100%" data-theme="light" data-stars="4,5" data-review-languages="en">
+  <a href="https://www.trustpilot.com/review/www.chescadirect.co.uk" target="_blank" rel="noopener">Trustpilot</a>
+</div>
+<!-- End TrustBox widget -->            
 {% include 'cross-sell' %}
 
 {% if settings.display_related_products %} 
@@ -415,7 +425,7 @@ ecomm_totalvalue: {{ product.price_min | money_without_currency }},
 </script>
 
 <!-- Targeting360 / Advertiser #56761 / Dynamic-Retargeting-Tag / Productfeed #21191 (Dummy) / View-Event / generated Mon, 07 Dec 2020 12:56:30 +0100 -->
-<script language="JavaScript" type="text/javascript">
+<script language="JavaScript" type="lazyload2">
 
     /* ALL COMMENTS IN THIS JAVASCRIPT-TAG MAY BE REMOVED */
 
@@ -445,5 +455,6 @@ ecomm_totalvalue: {{ product.price_min | money_without_currency }},
     tp_rtrgt_url += '&gdpr_consent=' + tp_rtrgt_gdpr_consent;
     tp_rtrgt_url += '&segment=' + tp_rtrgt_segment;
     tp_rtrgt_url += '&items=' + tp_rtrgt_items;
-    document.write('<div id="tp_rtrgt_div_' + tp_rtrgt_random + '" style="position:absolute; visibility:hidden; left:0px; top:0px; width:1px; height:1px; border:0"><iframe id="tp_rtrgt_iframe_' + tp_rtrgt_random + '" name="tp_rtrgt_iframe_' + tp_rtrgt_random + '" src="' + tp_rtrgt_url + '" scrolling="no" width="1" height="1"></iframe></div>');
+    
 </script>
+<script>document.write('<div id="tp_rtrgt_div_' + tp_rtrgt_random + '" style="position:absolute; visibility:hidden; left:0px; top:0px; width:1px; height:1px; border:0"><iframe id="tp_rtrgt_iframe_' + tp_rtrgt_random + '" name="tp_rtrgt_iframe_' + tp_rtrgt_random + '" src="' + tp_rtrgt_url + '" scrolling="no" width="1" height="1"></iframe></div>');</script>

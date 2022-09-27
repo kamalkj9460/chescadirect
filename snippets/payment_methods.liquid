@@ -12,7 +12,7 @@
 	{% if settings[display_current_method] %}
 		{% assign current_method_icon = method | prepend: 'icon-cc-' | append: '.png' %}
 		<span class="payment-method">
-			<a href="/cart" title="{{ method | replace: '-', ' ' | downcase | capitalize }}">{{ current_method_icon | asset_url | img_tag: method }}</a>
+			<a href="/cart" title="{{ method | replace: '-', ' ' | downcase | capitalize }}">{{ current_method_icon | asset_url | img_tag: method | replace: " src=", " class='lazy2 lazy3' data-src=" }}</a>
 		</span>
 	{% endif %}
 	

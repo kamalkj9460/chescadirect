@@ -3,7 +3,7 @@
   <ul class="row">
     <li class="col-xs-4 wow fadeInUp" data-wow-delay="100ms">
 	<a href="{{ settings.three_block_banner_link_1 }}" title="">
-	{{ 'top-banner-home-1.jpg' | asset_url | img_tag }}
+	{{ 'top-banner-home-1.jpg' | asset_url | img_tag | replace: " src=", " class='lazy2 lazy3' data-src=" }}
 	{% if settings.display_banner_text_1 %}
 	  <h4>
         <span style="
@@ -27,7 +27,7 @@
 	</a>
 	</li>
     <li class="col-xs-4 wow fadeInUp" data-wow-delay="300ms">
-		<a href="{{ settings.three_block_banner_link_2 }}" title="">{{ 'top-banner-home-2.jpg' | asset_url | img_tag }}
+		<a href="{{ settings.three_block_banner_link_2 }}" title="">{{ 'top-banner-home-2.jpg' | asset_url | img_tag | replace: " src=", " class='lazy2' data-src=" }}
 			{% if settings.display_banner_text_2 %}
 				<h4>
                   <span style="
@@ -50,7 +50,7 @@
 		</a>
 	</li>
     <li class="col-xs-4 wow fadeInUp" data-wow-delay="500ms">
-	<a href="{{ settings.three_block_banner_link_3 }}" title="">{{ 'top-banner-home-3.jpg' | asset_url | img_tag }}
+	<a href="{{ settings.three_block_banner_link_3 }}" title="">{{ 'top-banner-home-3.jpg' | asset_url | img_tag | replace: " src=", " class='lazy2' data-src=" }}
 	{% if settings.display_banner_text_3 %}
 	<h4>
                   <span style="

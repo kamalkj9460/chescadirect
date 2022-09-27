@@ -22,21 +22,22 @@
               <li class="slide">
 			  <img src="{{ slide | asset_url }}" data-url="{{ settings[link] }}" class="slide-img" alt="{{ settings[alt] }}" />
 			  <div class="slide-des">
+                    <h1 class="slide-heading-remove" style="">{{ canonical_url }}</h1>
 					{% if settings[slideheading] != blank %}
-                <h2 class="slide-heading" style="
-                    {% if settings[slideheadingsize] != blank %} 
-                    	font-size: {{settings[slideheadingsize]}}px;
-                    {% elsif settings[slideheadingSize] != blank %}                                            
-                    	font-size: {{settings[slideheadingSize]}}px;
-                    {% endif %}
-                    {% if settings[slideheadingcolor] != blank %} 
-                    	color: {{settings[slideheadingcolor]}};
-                    {% elsif settings[slideheadingColor] != blank %}
-                    	color: {{settings[slideheadingColor]}};
-                    {% endif %}"
-                >
-                      {{ settings[slideheading]}}
-                </h2>
+                        <h2 class="slide-heading" style="
+                            {% if settings[slideheadingsize] != blank %} 
+                            	font-size: {{settings[slideheadingsize]}}px;
+                            {% elsif settings[slideheadingSize] != blank %}                                            
+                            	font-size: {{settings[slideheadingSize]}}px;
+                            {% endif %}
+                            {% if settings[slideheadingcolor] != blank %} 
+                            	color: {{settings[slideheadingcolor]}};
+                            {% elsif settings[slideheadingColor] != blank %}
+                            	color: {{settings[slideheadingColor]}};
+                            {% endif %}"
+                        >
+                              {{ settings[slideheading]}}
+                        </h2>
 					{% endif %}
 					{% if settings[slidetext] != blank %}
 					<p class="slide-text" style="

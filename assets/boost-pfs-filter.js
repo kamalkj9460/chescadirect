@@ -29,7 +29,7 @@ var boostPFSFilterConfig = {
   }
 };
 
-(function() {
+setTimeout(function() {
   var onSale = false,
       soldOut = false,
       priceVaries = false,
@@ -1031,7 +1031,8 @@ var boostPFSFilterConfig = {
     }
   }
   /* Expand Filter */
-  jQ(document).ready(function() {
+  setTimeout(function() {
+    var jQ = jQuery;
     jQ('.boost-pfs-filter-custom-filter-button').on('click', function(){
       jQ('body').toggleClass('boost-pfs-filter-custom-drawer-open');
     });
@@ -1055,5 +1056,5 @@ var boostPFSFilterConfig = {
       jQ('.boost-pfs-filter-collection-header-wrapper').css('margin-top', headerFixedHeight);
     }
   });
-})();
+});
 

@@ -4,215 +4,212 @@
 <!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
-<head>
-  <meta name="google-site-verification" content="IE_Pw9NmcB--Pas6zcDnz9pzzMz2IinGlT58PBhz5Fc" />
-<meta name="google-site-verification" content="RplFNRkKO7ig2jIToRDkK729HcnGJdmd26LEqLSffDU" />
-  <meta name="google-site-verification" content="RplFNRkKO7ig2jIToRDkK729HcnGJdmd26LEqLSffDU" />
-  <!-- Basic page needs ================================================== -->
-  <meta charset="utf-8">
-
-  <!-- Title and description ================================================== -->
-  <title>
-  {{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
-  </title>
-
-  {% if page_description %}
-  <meta name="description" content="{{ page_description | escape }}">
-  {% endif %}
-
-  <!-- Product meta ================================================== -->
-  {% include 'fb-open-graph-tags' %}
-  {% include 'twitter-card' %}
-
-  <!-- Helpers ================================================== -->
-  {% if template contains 'collection' and current_tags %}
-  <meta name="robots" content="noindex,follow" />
-  <link rel="canonical" href="{{ shop.url }}{{ collection.url }}" />
-
-  {% elsif template == 'search' %}
-  <link rel="canonical" href="{{ shop.url | append: '/search' }}">
-  
-  {% elsif request.path contains 'types' %}
-  <meta name="robots" content="noindex, follow">
-  
-  {% elsif collection.url != blank and product.url != blank %}
-  <meta name="robots" content="noindex, follow">
-  <link rel="canonical" href="{{ shop.url }}{{ product.url }}" />
-  
-  {% else %}
-  <link rel="canonical" href="{{ canonical_url }}">
-  
-  {% endif %}
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="{{ 'favicon.ico' | asset_url }}" type="image/x-icon" />
-  
-   <!-- Styles -->
-    {% include 'head_styles' %}
-  
-   <!-- Scripts -->
-	{% include 'head_scripts' %}
-  
-   <!-- fonts -->
-	{% include 'head_fonts' %}
-  
-
-  <!-- Header hook for plugins ================================================== -->
-  {{ content_for_header }}
-
-  <!--[if lt IE 9]>
-  {{ '//html5shiv.googlecode.com/svn/trunk/html5.js' | script_tag }}
-  <![endif]-->
-
-  {% comment %}
-    If you store has customers disabled, you can remove the following JS file
-  {% endcomment %}
-  {% if template contains 'customers' %}
-    {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
-    {{ 'customer_area.js'  | shopify_asset_url | script_tag }}
-  {% endif %}
-
-  <script type='application/ld+json'>
-{
-	"@context": "http://schema.org/",
-	"@type": "Organization",
-	"address": {
-		"@type": "PostalAddress",
-		"addressCountry": "United Kingdom",
-		"addressLocality": "London",
-		"addressRegion": "Greater London",
-		"postalCode": "N7 0DP",
-		"streetAddress": "2 Tufnell Park Road",
-		"telephone": "02076093434",
-		"name": "Chesca"
-	}
-}
-</script>
-<!-- Global site tag (gtag.js) - DoubleClick -->
-<script async
-src="https://www.googletagmanager.com/gtag/js?id=DC-8708545"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'DC-8708545');
-</script>
-<!-- End of global snippet: Please do not remove -->
-<script>
-gtag('event', 'conversion', {
-'allow_custom_scripts': true,
-  'u1': '{{canonical_url}}',
-'u6': 'GBP',
-'send_to': 'DC-8708545/counter/chesc0+standard'
-});
-</script>  
-</head>
-
-{% comment %}
-  Add the page template as a class for easy page or template specific styling.
-{% endcomment %}
-<body id="{{ page_title | handle }}" class=" {% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
- <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
-    
-
-                <div class="gf-menu-device-wrapper">
-                	<div class="gf-menu-device-container"></div>
+<!--[if (gt IE 9)|!(IE)]><!--> 
+<html class="no-js" lang="en">
+<!--<![endif]-->
+    <head>
+        <meta name="google-site-verification" content="IE_Pw9NmcB--Pas6zcDnz9pzzMz2IinGlT58PBhz5Fc" />
+        <meta name="google-site-verification" content="RplFNRkKO7ig2jIToRDkK729HcnGJdmd26LEqLSffDU" />
+        <meta name="google-site-verification" content="RplFNRkKO7ig2jIToRDkK729HcnGJdmd26LEqLSffDU" />
+        <!-- Basic page needs ================================================== -->
+        <meta charset="utf-8">
+        <!-- Title and description ================================================== -->
+        <title>
+            {% if canonical_url == "https://chescadirect.co.uk/blogs/franchesca-blog" %}
+                Franchesca stocks Basler, Gerry Weber &ndash; Chesca
+            {% elsif canonical_url == "https://chescadirect.co.uk/blogs/franchesca-blog?page=2" %}
+                Franchesca stocks Basler, Gerry Weber &ndash; Chesca
+            {% else %}
+                {{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+            {% endif %}
+        </title>
+        {% assign description_text = "Our mission at chesca is to give real women a stylish yet comfortable outfit by combining luxury fabrics and sophisticated styling to fit and flatter the most discerning woman." %}
+        {% if page_description %}
+            {% comment %}<meta name="description" content="{{ page_description | escape }}">{% endcomment %}
+            <meta name="description" content="{{ canonical_url | replace: 'https://chescadirect.co.uk/', '' | replace: '/', ' ' | replace: '-', ' ' }} | {{ description_text }}">
+        {% else %}
+            {% comment %}<meta name="description" content="{{ page_description | escape }}">{% endcomment %}
+            <meta name="description" content="{{ canonical_url | replace: 'https://chescadirect.co.uk/', '' | replace: '/', ' ' | replace: '-', ' ' }} | {{ description_text }}">
+        {% endif %}
+        <!-- Product meta ================================================== -->
+        {% include 'fb-open-graph-tags' %}
+        {% include 'twitter-card' %}
+        <!-- Helpers ================================================== -->
+        {% if template contains 'collection' and current_tags %}
+            <meta name="robots" content="noindex,follow" />
+            <link rel="canonical" href="{{ shop.url }}{{ collection.url }}" />
+        {% elsif template == 'search' %}
+            <link rel="canonical" href="{{ shop.url | append: '/search' }}">
+        {% elsif request.path contains 'types' %}
+            <meta name="robots" content="noindex, follow">
+        {% elsif collection.url != blank and product.url != blank %}
+            <meta name="robots" content="noindex, follow">
+            <link rel="canonical" href="{{ shop.url }}{{ product.url }}" />
+        {% else %}
+            <link rel="canonical" href="{{ canonical_url }}">
+        {% endif %}
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="{{ 'favicon.ico' | asset_url }}" type="image/x-icon" />
+        <!-- Styles -->
+        {% render 'font-css' %}
+        {% if template contains 'index' %}
+            {% render 'homepage-critical-css' %}
+        {% elsif template contains 'collection' %}
+            {% render 'collection-critical-css' %}
+        {% elsif template contains 'product' %}
+            {% render 'product-critical-css' %}
+        {% else %}
+            {% render 'all-css' %}
+            {% render 'all-css-2' %}
+        {% endif %}
+        {% include 'head_styles' %}
+        <!-- Scripts -->
+	    {% include 'head_scripts' %}
+        <!-- fonts -->
+	    {% include 'head_fonts' %}
+        <!-- Header hook for plugins ================================================== -->
+        {%- if request.design_mode or template contains 'cart' or template contains 'checkout' -%}
+	        {{ content_for_header }}
+        {%- else -%}
+            {% capture content_for_header2 %}{{ content_for_header }}{% endcapture %}
+            {{ content_for_header2 | replace: ' defer="defer" ', ' type="lazyload2" ' | replace: " src=", " data-src=" | replace: "window.addEventListener('load', asyncLoad, false);", "window.addEventListener('wnw_load', asyncLoad, false);" | replace: "DOMContentLoaded", "DOMContentLoaded2" }}
+	        <script>var trekkie=[];trekkie.integrations=!0;</script>
+        {%- endif -%}
+        <!--[if lt IE 9]>
+        {{ '//html5shiv.googlecode.com/svn/trunk/html5.js' | script_tag }}
+        <![endif]-->
+        {% comment %}
+            If you store has customers disabled, you can remove the following JS file
+        {% endcomment %}
+        {% if template contains 'customers' %}
+            {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+            {{ 'customer_area.js'  | shopify_asset_url | script_tag }}
+        {% endif %}
+        <script type='application/ld+json'>
+        {
+            "@context": "http://schema.org/",
+            "@type": "Organization",
+            "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "United Kingdom",
+                "addressLocality": "London",
+                "addressRegion": "Greater London",
+                "postalCode": "N7 0DP",
+                "streetAddress": "2 Tufnell Park Road",
+                "telephone": "02076093434",
+                "name": "Chesca"
+            }
+        }
+        </script>
+        <!-- Global site tag (gtag.js) - DoubleClick -->
+        <script type="lazyload2" data-src="https://www.googletagmanager.com/gtag/js?id=DC-8708545"></script>
+        <script type="lazyload2">
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'DC-8708545');
+        </script>
+        <!-- End of global snippet: Please do not remove -->
+        <script type="lazyload2">
+            gtag('event', 'conversion', {
+            'allow_custom_scripts': true,
+            'u1': '{{canonical_url}}',
+            'u6': 'GBP',
+            'send_to': 'DC-8708545/counter/chesc0+standard'
+            });
+        </script>
+        <style>.main-slideshow .flexslider .slides .slide-des h1.slide-heading-remove{display:none}html body{opacity:1!important}</style>
+        <style class="critical2">@media (max-width:767px){.template-index .main-slideshow .flexslider .slides>li.slide{max-height:65vw}.menu-block .gf-menu-device-wrapper::before{background:url(https://cdn.shopify.com/s/files/1/0653/9731/t/25/assets/icon-top-header.png) no-repeat;position:absolute;top:50%;left:50%;margin:-7px 0 0 -10px;content:"";width:20px;height:14px}p.top-cart #cartToggle::before{background:url(https://cdn.shopify.com/s/files/1/0653/9731/t/25/assets/icon-top-header.png) 100% 0 no-repeat}.menu-block .gf-menu-device-wrapper{padding:0 10px;position:relative;border:none;height:46px;text-indent:-999em;margin:0;cursor:pointer;background:0 0}}</style>
+        <style class="critical3">@media only screen and (min-width:1200px){.main-slideshow{min-height:815px}.products-grid .grid-item .product-image{min-height:373.33px}}@media only screen and (max-width:550px){.main-slideshow{min-height:69vw}.products-grid .grid-item .product-image{min-height:293.33px}.product-img-box .product-photo-container{min-height:109vw}}</style>
+    </head>
+    {% comment %}
+    Add the page template as a class for easy page or template specific styling.
+    {% endcomment %}
+    <body id="{{ page_title | handle }}" class=" {% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
+        <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+            <div class="gf-menu-device-wrapper">
+                <div class="gf-menu-device-container"></div>
+            </div>             
+        </nav>
+        <div class="wrapper-container">
+	        {% include 'header-franchesca' %}
+            <nav class="nav-bar" role="navigation">
+                <div class="container">
+                    {% include 'site-nav-franchesca' %}
                 </div>
-
-
-             
-  </nav>
-  <div class="wrapper-container">
-	
-	{% include 'header-franchesca' %}
-  
-  <nav class="nav-bar" role="navigation">
-    <div class="container">
-      {% include 'site-nav-franchesca' %}
-     
-    </div>
-  </nav>
-  <div class="quick-view"></div>
-
-  <main class="container main-content" role="main">
-    {{ content_for_layout }}
-
-  </main>
-
-  {% include 'footer-franchesca' %}
-
-  {% if settings.enable_quick_view %}
-  	{% include 'quick-view-template' %}
-  {% endif %}
-
-  {% include 'footer_scripts' %}
-  {% include 'newsletter-franchesca' %}
-  <div id="back-top" style="display: none;"><a class="nav_up" href="#top">Back to top</a></div>
-  </div>
-
-  {% if settings.display_recently_viewed_products %}
-  <!-- Begin Recently Viewed Products -->
-  {{ '//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js' | script_tag }}
-  {{ 'jquery.products.min.js' | asset_url | script_tag }}
-  {% if template contains 'product' %}
-  <script>
-  Shopify.Products.recordRecentlyViewed();
-  </script>
-  {% endif %}
-  <!-- End Recently Viewed Products -->
-  {% endif %}
-
-<input type="hidden" name="_pc_params" value="{{ shop.permanent_domain }}:{{ customer.id }}" />
-<script type="text/conversion">
-    if(typeof(google_tag_params)=='undefined')
-    {
-        var google_tag_params = {
-            ecomm_prodid: '',
-            ecomm_pagetype: 'other',
-            ecomm_totalvalue: ''
-        };
-    }
-</script>
-<!-- Google Code for Remarketing Tag -->
-<!--------------------------------------------------
-Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. See more information and instructions on how to setup the tag on: http://google.com/ads/remarketingsetup
---------------------------------------------------->
-<script type="text/javascript">
-/* <![CDATA[ */
-var google_conversion_id = 1055895193;
-var google_custom_params = window.google_tag_params;
-var google_remarketing_only = true;
-/* ]]> */
-  
-  $( document ).ready(function() {
-  $(".search-bar").on('submit', function() {
-  
-    var val = $(this).find('input[name="q"]').val();
-    $q = val + " AND vendor:franchesca";
-    $(this).find('input[name="q"]').val($q);
-  });
-})
-</script>
-  
-<!-- Hotjar Tracking Code for https://chescadirect.co.uk/ -->
-<script>
-(function(h,o,t,j,a,r){
-h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-h._hjSettings={hjid:566293,hjsv:5};
-a=o.getElementsByTagName('head')[0];
-r=o.createElement('script');r.async=1;
-r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-a.appendChild(r);
-})(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
-</script>
-<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
-</script>
-<noscript>
-<div style="display:inline;">
-<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1055895193/?value=0&amp;guid=ON&amp;script=0"/>
-</div>
-</noscript>
-</body>
+            </nav>    
+            <div class="quick-view"></div>
+            <main class="container main-content" role="main">
+                {{ content_for_layout }}
+            </main>
+            {% include 'footer-franchesca' %}
+            {% if settings.enable_quick_view %}
+  	            {% include 'quick-view-template' %}
+            {% endif %}
+            {% include 'footer_scripts' %}
+            {% include 'newsletter-franchesca' %}
+            <div id="back-top" style="display: none;"><a class="nav_up" href="#top">Back to top</a></div>
+        </div>
+        {% if settings.display_recently_viewed_products %}
+            <!-- Begin Recently Viewed Products -->
+            <script type='lazyload2' data-src="//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+            <script type='lazyload2' data-src="{{ 'jquery.products.min.js' | asset_url }}"></script>
+            {% if template contains 'product' %}
+                <script type='lazyload2'>
+                    Shopify.Products.recordRecentlyViewed();
+                </script>
+            {% endif %}
+            <!-- End Recently Viewed Products -->
+        {% endif %}
+        <input type="hidden" name="_pc_params" value="{{ shop.permanent_domain }}:{{ customer.id }}" />
+        <script type="lazyload2">
+            if(typeof(google_tag_params)=='undefined')
+            {
+                var google_tag_params = {
+                    ecomm_prodid: '',
+                    ecomm_pagetype: 'other',
+                    ecomm_totalvalue: ''
+                };
+            }
+        </script>
+        <!-- Google Code for Remarketing Tag -->
+        <!--------------------------------------------------
+        Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. See more information and instructions on how to setup the tag on: http://google.com/ads/remarketingsetup
+        --------------------------------------------------->
+        <script type="lazyload2">
+        /* <![CDATA[ */
+        var google_conversion_id = 1055895193;
+        var google_custom_params = window.google_tag_params;
+        var google_remarketing_only = true;
+        /* ]]> */
+        
+        setTimeout(function() {
+        $(".search-bar").on('submit', function() {
+        
+            var val = $(this).find('input[name="q"]').val();
+            $q = val + " AND vendor:franchesca";
+            $(this).find('input[name="q"]').val($q);
+        });
+        })
+        </script>
+        <!-- Hotjar Tracking Code for https://chescadirect.co.uk/ -->
+        <script type="lazyload2">
+            (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:566293,hjsv:5};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+            })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
+        </script>
+        <script type="lazyload2" data-src="//www.googleadservices.com/pagead/conversion.js"></script>
+        <noscript>
+            <div style="display:inline;">
+                <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1055895193/?value=0&amp;guid=ON&amp;script=0"/>
+            </div>
+        </noscript>
+        {{ 'wnw-optimization.js' | asset_url | script_tag }}
+    </body>
 </html>

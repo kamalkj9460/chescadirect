@@ -1,6 +1,7 @@
 var boost;
-(function(b) {
-    b(document).ready(function() {
+setTimeout(function() {
+    var b = jQuery;
+    setTimeout(function() {
         boost.init()
     });
     b(window).resize(function() {
@@ -547,4 +548,4 @@ var boost;
             b(".quick-view").fadeOut(500)
         }
     }
-})(jQuery);
+});

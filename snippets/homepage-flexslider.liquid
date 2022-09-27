@@ -20,7 +20,7 @@
               {% capture buttontext %}button-text_{{ i }}{% endcapture %}
               {% if settings[display_slideshow] %}
               <li class="slide">
-			  <img src="{{ slide | asset_url }}" data-url="{{ settings[link] }}" class="slide-img" alt="{{ settings[alt] }}" />
+			  <img {% if forloop.first == true %} src="{{ slide | asset_url }}" {% else %} src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" {% endif %} data-src="{{ slide | asset_url }}" data-url="{{ settings[link] }}" class="slide-img lazy2" alt="{{ settings[alt] }}" />
 			  <div class="slide-des">
 					{% if settings[slideheading] != blank %}
                 <h2 class="slide-heading" style="

@@ -1,5 +1,9 @@
 {% if settings.font_1 == 'google_fonts' or settings.font_2 == 'google_fonts' or settings.font_3 == 'google_fonts' %}
-<script type="text/javascript">
+{% if template contains 'cart' or template contains 'checkout' %}
+	<script>
+{% else %}
+    <script type="lazyload2">
+{% endif %}
   WebFontConfig = {
     google: { families: [ 
       {% if settings.font_1 == 'google_fonts' %}
@@ -19,7 +23,7 @@
 	  {% endif %}
     ] }
   };
-  (function() {
+  setTimeout(function() {
     var wf = document.createElement('script');
     wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
       '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
@@ -27,6 +31,6 @@
     wf.async = 'true';
     var s = document.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(wf, s);
-  })(); 
+  }); 
 </script>
 {% endif %}
